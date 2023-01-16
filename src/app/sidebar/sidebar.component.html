@@ -1,0 +1,15 @@
+<nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+    <div class="position-sticky">
+      <div class="list-group list-group-flush mx-3 mt-4">
+        <a 
+        *ngFor="let element of elements" 
+        (click)="onMenuElementClicked(element)"
+        href="#" 
+        [ngClass]="element.clicked ? 'active': 'notactive'" 
+        class="list-group-item list-group-item-action py-2 ripple">
+          <i class="fas {{element.fontawesome}} fa-fw me-3"></i><span>{{element.elementName}}</span>
+        </a>
+        
+      </div>
+    </div>
+</nav>
