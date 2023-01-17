@@ -4,7 +4,8 @@
         <a 
         *ngFor="let element of elements" 
         (click)="onMenuElementClicked(element)"
-        href="#" 
+        [routerLink]="element.link"
+        routerLinkActive="active"
         [ngClass]="element.clicked ? 'active': 'notactive'" 
         class="list-group-item list-group-item-action py-2 ripple">
           <i class="fas {{element.fontawesome}} fa-fw me-3"></i><span>{{element.elementName}}</span>

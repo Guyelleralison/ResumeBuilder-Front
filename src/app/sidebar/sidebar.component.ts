@@ -21,12 +21,14 @@ export class SidebarComponent implements OnInit {
         {
           "elementName": 'Liste des candidats',
           "fontawesome": 'fa-user',
-          "clicked": true
+          "clicked": true,
+          "link": ''
         },
         {
           "elementName": 'Paramètres',
           "fontawesome": 'fa-gear',
-          "clicked": false
+          "clicked": false,
+          "link": 'config'
         }
       ]
     }

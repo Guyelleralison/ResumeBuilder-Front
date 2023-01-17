@@ -1,0 +1,40 @@
+.jumbotron {
+    background-color: rgb(58, 166, 212);
+    width: 1150px;
+    height: 650px;
+    margin-left: 18%;
+    margin-top: 6%;
+    border-radius: 10px;
+
+    .config-header {
+        margin-left: 20px;
+
+        .config-subtitle{
+            margin-top: 30px;
+        }
+    }
+
+    .config-body {
+        margin-top: 30px;
+        display: flex;
+
+        .category-list{
+            margin-left: 20px;
+        }
+
+        .technology-list{
+            margin-left: 25%;
+        }
+
+        .table {
+            background-color: rgb(250, 240, 240, 96%);
+            margin-top: 10px;
+            border-radius: 10px;
+
+            .buttons-control{
+                float: right;
+            }
+        }
+    }
+
+}
