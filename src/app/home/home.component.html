@@ -1,36 +1,8 @@
-<div class="jumbotron">
-    <div class="home-header">
-        <div class="home-title">
-            <h3>Liste des candidats</h3>
-        </div>
-        <div>
-
-        </div>
-    </div>
-    <div class="home-body">
-        <table class="table table-sm table-borderless">
-            <thead>
-              <tr>
-                <th scope="col">Nom complet</th>
-                <th scope="col">Profil</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let candidate of candidates">
-                <td>
-                    {{candidate.lastName}} {{candidate.firstName}}
-                </td>
-                <td>
-                    <p *ngFor="let profil of candidate.profiles">{{profil.title}}</p>
-                </td>
-                <td>
-                    <div *ngFor="let profile of candidate.profiles">
-                        <button class="btn" (click)="onShowProfile(profile.id)"><i class="fa-solid fa-eye"></i></button>
-                        <button class="btn" (click)="onEditProfile(profile.id)"><i class="fa-solid fa-pen"></i></button>
-                    </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-    </div>
+<div class="home">
+  <div class="add-candidate-button">
+      <button class="btn btn-light">Ajouter candidat +</button>
+  </div>
+  <div class="candidate-list">
+    <app-candidate-list></app-candidate-list>
+  </div>
 </div>
