@@ -3,8 +3,8 @@
         <div class="home-title">
             <h3>Liste des candidats</h3>
         </div>
-        <div>
-
+        <div class="search-candidate col-sm-3">
+          <input class="form-control" type="text" placeholder="Rechercher..." (keyup)='search($event)'>
         </div>
     </div>
     <div class="home-body">
@@ -16,7 +16,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let candidate of candidates">
+              <tr *ngFor="let candidate of filterData">
                 <td>
                     {{candidate.lastName}} {{candidate.firstName}}
                 </td>

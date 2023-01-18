@@ -10,11 +10,13 @@ import { CandidateService } from 'src/app/services/candidate.service';
 export class CandidateListComponent implements OnInit {
 
   candidates!: Candidate[];
+  filterData!: Candidate[];
 
   constructor(private candidateService: CandidateService) { }
 
   ngOnInit(): void {
     this.candidates = this.candidateService.getCandidateList();
+    this.filterData = this.candidates;
   }
 
   onEditProfile(profileId: string): void {
@@ -23,6 +25,16 @@ export class CandidateListComponent implements OnInit {
 
   onShowProfile(profileId: string): void {
 
+  }
+
+  search(event: any): void {
+    if(event) {
+      this.filterData = this.candidates.filter(x => 
+        x.firstName.trim().toLowerCase().includes(event.target.value.trim().toLowerCase()) ||
+        x.lastName.trim().toLowerCase().includes(event.target.value.trim().toLowerCase()) ||
+        x.profiles.find(profile=>profile.title.trim().toLowerCase().includes(event.target.value.trim().toLowerCase()))
+      );
+    }
   }
 
 }

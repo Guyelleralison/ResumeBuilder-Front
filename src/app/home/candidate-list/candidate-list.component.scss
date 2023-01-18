@@ -5,4 +5,21 @@
     margin-left: 18%;
     margin-top: 6%;
     border-radius: 10px;
+
+    .home-header {
+        display: flex;
+        margin-left: 20px;
+
+        .home-title {
+            margin-top: 20px;
+        }
+        .search-candidate {
+            margin-top: 20px;
+            margin-left: 50%;
+        }
+    }
+
+    .home-body {
+        margin-left: 20px;
+    }
 }
