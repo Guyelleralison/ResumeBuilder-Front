@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+.jumbotron {
+    background-color: rgb(58, 166, 212);
+    width: 1150px;
+    height: 650px;
+    margin-left: 18%;
+    margin-top: 6%;
+    border-radius: 10px;
+
+    .header {
+        margin-left: 20px;
+    }
+    .title-section {
+        margin-top: 20px;
+    }
+}
