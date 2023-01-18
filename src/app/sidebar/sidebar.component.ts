@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { SidebarMenuService } from '../services/sidebar-menu.service';
 import { SidebarMenu } from './models/sidebar-menu.model';
 
 @Component({
@@ -7,30 +8,25 @@ import { SidebarMenu } from './models/sidebar-menu.model';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  @Input()
   elements!: SidebarMenu[];
 
   elementClicked!: boolean;
 
-  constructor() { }
+  @Input()
+  onHomePage!: boolean;
+
+  @Input()
+  onResumeBuilderPage!: boolean;
+
+  constructor(private sidebarMenuService: SidebarMenuService) { }
 
   ngOnInit(): void {
     this.elementClicked = false;
-    if (!this.elements) {
-      this.elements = [
-        {
-          "elementName": 'Liste des candidats',
-          "fontawesome": 'fa-user',
-          "clicked": true,
-          "link": ''
-        },
-        {
-          "elementName": 'Paramètres',
-          "fontawesome": 'fa-gear',
-          "clicked": false,
-          "link": 'config'
-        }
-      ]
+    if (this.onHomePage) {
+      this.elements = this.sidebarMenuService.getHomeSidebarMenu();
+    }
+    if (this.onResumeBuilderPage) {
+      this.elements = this.sidebarMenuService.getResumeBuilderMenu();
     }
   }
 

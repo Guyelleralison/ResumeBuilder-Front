@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'resume-builder';
+  resumeBuilderScreen: boolean = false;
+
+  constructor(private router: Router) { }
+  
+  navigateToResumeBuilder(): void {
+    this.resumeBuilderScreen = true;
+    this.router.navigateByUrl('info');
+  }
 }
