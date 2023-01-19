@@ -13,6 +13,7 @@ import { SkillComponent } from './resume/skill/skill.component';
 import { CareerComponent } from './resume/career/career.component';
 import { ProfileComponent } from './resume/profile/profile.component';
 import { EducationComponent } from './resume/education/education.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { EducationComponent } from './resume/education/education.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

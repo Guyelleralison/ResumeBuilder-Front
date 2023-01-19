@@ -4,4 +4,59 @@
             <h3>Informations</h3>
         </div>
     </div>
+    <div class="information-form">
+        <form #informationForm="ngForm" (ngSubmit)="onSubmitForm(informationForm)" class="form">
+            <div class="section-left">
+                <div class="lastName-input">
+                    <label for="lastName">Nom</label>
+                    <input class="form-control" type="text" [(ngModel)]="lastName" id="lastName" name="lastName">
+                </div>
+                <div class="matricule-input">
+                    <label for="matricule">Matricule</label>
+                    <input class="form-control" type="text" [(ngModel)]="matricule" id="matricule" name="matricule">
+                </div>
+                <div class="email-input">
+                    <label for="email">Adresse e-mail</label>
+                    <input class="form-control" type="email" [(ngModel)]="email" id="email" name="email">
+                </div>
+                <div class="gender-input">
+                    <label for="gender">Sexe</label>
+                    <select class="form-select" aria-label="Default select example" [(ngModel)]="gender" id="gender" name="gender">
+                        <option *ngFor="let gender of genderValues" [value]="gender">{{gender}}</option>
+                    </select>
+                </div>
+                <div class="description-input">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" rows="5" [(ngModel)]="description" id="description" name="description"></textarea>
+                </div>
+            </div>
+            <div class="section-right">
+                <div class="firstName-input">
+                    <label for="firstName">Prénom</label>
+                    <input class="form-control" type="text" [(ngModel)]="firstName" id="firstName" name="firstName">
+                </div>
+                <div class="dateOfBirth-input">
+                    <label for="dateOfBirth">Date de naissance</label>
+                    <input class="form-control" type="date" [(ngModel)]="dateOfBirth" id="dateOfBirth" name="dateOfBirth">
+                </div>
+                <div class="status-input">
+                    <label for="status">Statut</label>
+                    <select class="form-select" aria-label="Default select example" [(ngModel)]="status" id="status" name="status">
+                        <option *ngFor="let status of statusValues" [value]="status">{{status}}</option>
+                    </select>
+                </div>
+                <div class="button-submit">
+                    <button class="form-control" type="submit">Suivant <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+        </form>
+    </div>
 </div>
