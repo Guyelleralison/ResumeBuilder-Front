@@ -4,4 +4,39 @@
             <h3>Expériences</h3>
         </div>
     </div>
+    <div class="experience-form">
+        <form #experienceForm="ngForm" (ngSubmit)="onSubmitForm(experienceForm)" class="form">
+            <div class="section-left">
+                <div class="position-input">
+                    <label for="position">Poste</label>
+                    <input class="form-control" type="text" [(ngModel)]="position" id="position" name="position">
+                </div>
+                <div class="beginDate-input">
+                    <label for="beginDate">Date de début</label>
+                    <input class="form-control" type="date" [(ngModel)]="beginDate" id="beginDate" name="beginDate">
+                </div>
+                <div class="experienceTitle-input">
+                    <label for="experienceTitle">Intitulé de l'experience</label>
+                    <textarea class="form-control" rows="5" [(ngModel)]="experienceTitle" id="experienceTitle" name="experienceTitle"></textarea>
+                </div>
+            </div>
+            <div class="section-right">
+                <div class="sector-input">
+                    <label for="sector">Sécteur</label>
+                    <input class="form-control" type="text" [(ngModel)]="sector" id="sector" name="sector">
+                </div>
+                <div class="endDate-input">
+                    <label for="endDate">Date de fin</label>
+                    <input class="form-control" type="date" [(ngModel)]="endDate" id="endDate" name="endDate">
+                </div>
+                <div class="description-input">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" [(ngModel)]="description" id="description" name="description"></textarea>
+                </div>
+                <div class="button-submit">
+                    <button class="form-control" type="submit">Suivant <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
