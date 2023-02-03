@@ -4,4 +4,37 @@
             <h3>Compétences</h3>
         </div>
     </div>
+    <div class="body">
+        <div class="skill-form">
+            <form [formGroup]="skillForm" class="form">
+                <div class="form-group">
+                    <label for="category">Catégorie</label>
+                    <input class="form-control" id="category" type="text" formControlName="category">
+                </div>
+                <div class="form-group">
+                    <label for="technology">Technologie</label>
+                    <input class="form-control" id="technology" type="text" formControlName="technology">
+                </div>
+                <div class="form-group">
+                    <label for="version">Version</label>
+                    <input class="form-control" id="version" type="text" formControlName="version">
+                </div>
+                <div class="form-group">
+                    <button class="form-control" type="submit" (click)="onSubmitForm()">Enregistrer</button>
+                </div>            
+            </form>
+        </div>
+        <div class="skill-list">
+            <table class="table table-responsive">
+                <tbody>
+                  <tr *ngFor="let skill of skills">
+                    <th>{{skill.category.name}}</th>
+                    <td>{{skill.technology.name}}</td>
+                    <td>{{skill.technology.version}}</td>
+                    <td><button class="btn" (click)="onDeleteSkill(skill.id)"><i class="fa-solid fa-trash"></i></button></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
 </div>
