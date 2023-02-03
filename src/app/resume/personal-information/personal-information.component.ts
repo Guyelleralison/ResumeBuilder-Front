@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-personal-information',
@@ -8,20 +8,24 @@ import { NgForm } from '@angular/forms';
 })
 export class PersonalInformationComponent implements OnInit {
 
-  lastName!: string;
-  firstName!: string;
-  matricule!: string;
-  email!: string;
-  status!: string;
-  dateOfBirth!: string;
-  gender!: string;
-  description!: string;
+  personalInformationForm!: FormGroup;
   statusValues!: string[];
   genderValues!: string[];
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.personalInformationForm = this.formBuilder.group({
+      lastName: [null],
+      firstName: [null],
+      matricule: [null],
+      email: [null],
+      status: [null],
+      dateOfBirth: [null],
+      gender: [null],
+      description: [null]
+    });
+
     this.statusValues = [
       'Célibataire',
       'Divorcé(e)',
@@ -36,8 +40,8 @@ export class PersonalInformationComponent implements OnInit {
     ]
   }
 
-  onSubmitForm(form: NgForm) {
-    console.log(form.value);
+  onSubmitForm() {
+    console.log(this.personalInformationForm.value);
   }
 
 }

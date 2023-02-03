@@ -4,4 +4,52 @@
             <h3>Formation</h3>
         </div>
     </div>
+    <div class="body">
+        <div class="formation-form">
+            <form [formGroup]="formationForm" class="form">
+                <div class="form-left">
+                    <div class="form-group">
+                        <label for="category">Diplôme</label>
+                        <input class="form-control" id="diploma" type="text" formControlName="diploma">
+                    </div>
+                    <div class="form-group">
+                        <label for="technology">Année de début</label>
+                        <input class="form-control" id="startDate" type="date" formControlName="startDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="version">Intitulé de formation</label>
+                        <input class="form-control" id="version" type="text" formControlName="title">
+                    </div>
+                </div>
+                <div class="form-right">
+                    <div class="form-group">
+                        <label for="category">Institut</label>
+                        <input class="form-control" id="institute" type="text" formControlName="institute">
+                    </div>
+                    <div class="form-group">
+                        <label for="technology">Année de fin</label>
+                        <input class="form-control" id="endDate" type="date" formControlName="endDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="version">Lieu</label>
+                        <input class="form-control" id="version" type="text" formControlName="location">
+                    </div>
+                    <div class="form-group">
+                        <button class="form-control" type="submit" (click)="onSubmitForm()">Valider</button>
+                    </div>  
+                </div>    
+            </form>
+        </div>
+        <div class="formation-list">
+            <table class="table table-responsive">
+                <tbody>
+                  <tr *ngFor="let formation of formationList">
+                    <th>{{formation.diploma}}</th>
+                    <td>{{formation.startDate | date: 'yyyy'}} - {{formation.endDate | date: 'yyyy'}}</td>
+                    <td><button class="btn" (click)="onDeleteFormation(formation.id)"><i class="fa-solid fa-trash"></i></button></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
 </div>
