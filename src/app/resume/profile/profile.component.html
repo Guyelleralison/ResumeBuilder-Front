@@ -3,5 +3,44 @@
         <div class="title">
             <h3>Profil</h3>
         </div>
+        <div class="title-profile">
+            <label for="profile-title">Titre du poste</label>
+            <input type="text" id="profile-title" class="form-control">
+        </div> 
+    </div>
+    <div class="body">
+        <div class="left-part">
+            <div class="card">
+                <h5>Expériences</h5>
+                <table class="table">
+                    <tr *ngFor="let experience of experiences">
+                        <td> {{experience.position }} </td>
+                        <td>
+                            <div>
+                                <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="right-part">
+            <div class="card">
+                <h5>Compétences</h5>
+                <table class="table">
+                    <tr *ngFor="let skill of skills">
+                        <td>{{skill.technology.name}}</td>
+                        <td>
+                            <div>
+                                <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="final-button">
+            <button class="btn btn-light">Suivant</button>
+        </div>
     </div>
 </div>

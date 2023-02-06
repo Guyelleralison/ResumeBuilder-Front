@@ -1,0 +1,28 @@
+.header {
+    display: flex;
+
+    .title-profile {
+        margin-left: 55%;
+    }
+}
+
+.body {
+    display: flex;
+
+    .card {
+       width: 300px; 
+    }
+    .left-part {
+        padding: 20px;
+    }
+
+    .right-part {
+        padding: 20px;
+        margin-left: 30%;
+    }
+
+    .final-button {
+        margin-left: 10px;
+        margin-top: 40%;
+    }
+}
