@@ -4,4 +4,56 @@
             <h3>Parcours</h3>
         </div>
     </div>
+    <div class="body">
+        <div class="career-form">
+            <form [formGroup]="careerForm" class="form">
+                <div class="form-left">
+                    <div class="form-group">
+                        <label for="category">Poste occupé</label>
+                        <input class="form-control" id="position" type="text" formControlName="position">
+                    </div>
+                    <div class="form-group">
+                        <label for="technology">Année de début</label>
+                        <input class="form-control" id="startDate" type="date" formControlName="startDate">
+                    </div>
+                </div>
+                <div class="form-right">
+                    <div class="form-group">
+                        <label for="category">Entreprise</label>
+                        <input class="form-control" id="company" type="text" formControlName="company">
+                    </div>
+                    <div class="form-group">
+                        <label for="technology">Année de fin</label>
+                        <input class="form-control" id="endDate" type="date" formControlName="endDate">
+                    </div>
+                    <div class="form-group">
+                        <button class="form-control" type="submit" (click)="onSubmitForm()">Valider</button>
+                    </div>  
+                </div> 
+                <div class="super-right">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" formControlName="isCurrentPosition" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Actuellement
+                        </label>
+                      </div>
+                </div>   
+            </form>
+        </div>
+        <div class="career-list">
+            <table class="table table-responsive">
+                <tbody>
+                  <tr *ngFor="let career of careerList">
+                    <td>{{career.position}}</td>
+                    <td>{{career.company}}</td>
+                    <td>
+                        {{career.startDate | date: 'yyyy'}} - {{career.endDate | date: 'yyyy'}} 
+                        <p *ngIf="career.isCurrentPosition">Actuellement</p>
+                    </td>
+                    <td><button class="btn" (click)="onDeleteCareer(career.id)"><i class="fa-solid fa-trash"></i></button></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
 </div>
