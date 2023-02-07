@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { SkillsCategory } from 'src/app/models/skills-category.model';
 import { Skills } from 'src/app/models/skills.model';
@@ -15,7 +16,11 @@ export class SkillComponent implements OnInit {
   skillForm!: FormGroup;
   skills!: Skills[];
 
-  constructor(private formBuilder: FormBuilder, private skillService: SkillService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private skillService: SkillService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.skillForm = this.formBuilder.group({
@@ -46,6 +51,10 @@ export class SkillComponent implements OnInit {
 
   onDeleteSkill(idSkill: string): void {
     this.skills = this.skills.filter((skill) => skill.id !== idSkill);
+  }
+
+  onClickNextPage(): void {
+    this.router.navigate(['/education']);
   }
 
 }

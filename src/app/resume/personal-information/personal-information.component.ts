@@ -1,18 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { OnCreateForm } from 'src/app/interfaces/on-create-form';
 
 @Component({
   selector: 'app-personal-information',
   templateUrl: './personal-information.component.html',
   styleUrls: ['./personal-information.component.scss']
 })
-export class PersonalInformationComponent implements OnInit {
+export class PersonalInformationComponent implements OnInit, OnCreateForm {
 
   personalInformationForm!: FormGroup;
   statusValues!: string[];
   genderValues!: string[];
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private router: Router) { }
+  
+  onClickNextPage(): void {
+    throw new Error('Method not implemented.');
+  }
 
   ngOnInit(): void {
     this.personalInformationForm = this.formBuilder.group({
@@ -42,6 +48,7 @@ export class PersonalInformationComponent implements OnInit {
 
   onSubmitForm() {
     console.log(this.personalInformationForm.value);
+    this.router.navigate(['/experiences']);
   }
 
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { OnCreateForm } from 'src/app/interfaces/on-create-form';
 import { Formation } from 'src/app/models/formation.model';
 import { FormationService } from 'src/app/services/formation.service';
 
@@ -8,12 +10,16 @@ import { FormationService } from 'src/app/services/formation.service';
   templateUrl: './education.component.html',
   styleUrls: ['./education.component.scss']
 })
-export class EducationComponent implements OnInit {
+export class EducationComponent implements OnInit, OnCreateForm {
 
   formationList!: Formation[];
   formationForm!: FormGroup;
 
-  constructor(private formationService: FormationService, private formBuilder: FormBuilder) { }
+  constructor(
+    private formationService: FormationService,
+    private formBuilder: FormBuilder,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.formationList = this.formationService.getFormationsByProfile('');
@@ -39,5 +45,9 @@ export class EducationComponent implements OnInit {
       id: this.formationList.length + 1
     };
     this.formationList.push(newFormation);
+  }
+
+  onClickNextPage(): void {
+    this.router.navigate(['/career']);
   }
 }
