@@ -38,4 +38,8 @@ export class ExperienceComponent implements OnInit, OnCreateForm {
     }
   }
 
+  onDeleteExperience(idExperience: string): void {
+    
+  }
+
 }
