@@ -45,8 +45,8 @@
                         <option *ngFor="let status of statusValues" [value]="status">{{status}}</option>
                     </select>
                 </div>
-                <div class="button-submit">
-                    <button class="form-control" type="submit" (click)="onSubmitForm()">Suivant <i class="fa-solid fa-arrow-right"></i></button>
+                <div class="next-button">
+                    <button class="btn btn-light" type="submit" [disabled]="personalInformationForm.invalid" (click)="onSubmitForm()">Suivant <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </div>
             

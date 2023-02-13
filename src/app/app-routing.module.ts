@@ -8,6 +8,7 @@ import { ExperienceComponent } from './resume/experience/experience.component';
 import { PersonalInformationComponent } from './resume/personal-information/personal-information.component';
 import { ProfileComponent } from './resume/profile/profile.component';
 import { SkillComponent } from './resume/skill/skill.component';
+import { ResumeTemplateComponent } from './template/resume-template/resume-template.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,9 @@ const routes: Routes = [
   },
   {
     path: 'profile', component: ProfileComponent
+  },
+  {
+    path: 'resume', component: ResumeTemplateComponent
   }
 ];
 

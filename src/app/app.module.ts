@@ -14,6 +14,7 @@ import { CareerComponent } from './resume/career/career.component';
 import { ProfileComponent } from './resume/profile/profile.component';
 import { EducationComponent } from './resume/education/education.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ResumeTemplateComponent } from './template/resume-template/resume-template.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SkillComponent,
     CareerComponent,
     ProfileComponent,
-    EducationComponent
+    EducationComponent,
+    ResumeTemplateComponent
   ],
   imports: [
     BrowserModule,

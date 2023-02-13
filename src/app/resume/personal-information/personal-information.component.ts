@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OnCreateForm } from 'src/app/interfaces/on-create-form';
 
@@ -22,13 +22,13 @@ export class PersonalInformationComponent implements OnInit, OnCreateForm {
 
   ngOnInit(): void {
     this.personalInformationForm = this.formBuilder.group({
-      lastName: [null],
-      firstName: [null],
-      matricule: [null],
-      email: [null],
+      lastName: [null, Validators.required],
+      firstName: [null, Validators.required],
+      matricule: [null, Validators.required],
+      email: [null, Validators.required],
       status: [null],
-      dateOfBirth: [null],
-      gender: [null],
+      dateOfBirth: [null, Validators.required],
+      gender: [null, Validators.required],
       description: [null]
     });
 

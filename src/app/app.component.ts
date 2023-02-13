@@ -16,4 +16,8 @@ export class AppComponent {
     this.resumeBuilderScreen = true;
     this.router.navigateByUrl('info');
   }
+
+  showResumeTemplate(): void {
+    this.router.navigateByUrl('resume');
+  }
 }
