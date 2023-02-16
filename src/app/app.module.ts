@@ -15,6 +15,7 @@ import { ProfileComponent } from './resume/profile/profile.component';
 import { EducationComponent } from './resume/education/education.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ResumeTemplateComponent } from './template/resume-template/resume-template.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ResumeTemplateComponent } from './template/resume-template/resume-templ
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

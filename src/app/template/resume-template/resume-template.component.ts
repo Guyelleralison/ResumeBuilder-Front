@@ -3,7 +3,6 @@ import jsPDF from 'jspdf';
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 (<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
-import htmlToPdfmake from 'html-to-pdfmake';
 
 @Component({
   selector: 'app-resume-template',
@@ -23,13 +22,13 @@ export class ResumeTemplateComponent implements OnInit {
   pdfTable!: ElementRef;
    
   public downloadAsPDF() {
-    const doc = new jsPDF();
-    const pdfTable = this.pdfTable.nativeElement;
+    // const doc = new jsPDF();
+    // const pdfTable = this.pdfTable.nativeElement;
     
-    var html = htmlToPdfmake(pdfTable.innerHTML);
+    // var html = htmlToPdfmake(pdfTable.innerHTML);
       
-    const documentDefinition = { content: html };
-    pdfMake.createPdf(documentDefinition).open(); 
+    // const documentDefinition = { content: html };
+    // pdfMake.createPdf(documentDefinition).open(); 
       
   }
 

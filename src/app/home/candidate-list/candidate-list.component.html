@@ -8,17 +8,19 @@
         </div>
     </div>
     <div class="home-body">
-        <table class="table table-sm table-borderless">
+        <table class="table table-striped">
             <thead>
               <tr>
                 <th scope="col">Nom complet</th>
                 <th scope="col">Profil</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let candidate of filterData">
+              <tr *ngFor="let candidate of candidates$ | async">
                 <td>
-                    {{candidate.lastName}} {{candidate.firstName}}
+                    <p>{{candidate.lastName}} {{candidate.firstName}} </p>
+                    <button class="btn btn" (click)="addNewProfile(candidate.id)"> <i class="fa-solid fa-file-circle-plus"></i> Ajouter un profil </button>
                 </td>
                 <td>
                     <p *ngFor="let profil of candidate.profiles">{{profil.title}}</p>

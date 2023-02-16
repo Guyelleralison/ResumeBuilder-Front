@@ -5,58 +5,50 @@
         </div>
     </div>
     <div class="information-form">
-        <form [formGroup]="personalInformationForm" class="form">
+        <form #personalInformationForm="ngForm" class="form" (ngSubmit)="onSubmitForm(personalInformationForm)">
             <div class="section-left">
                 <div class="lastName-input">
                     <label for="lastName">Nom</label>
-                    <input class="form-control" type="text" id="lastName" formControlName="lastName">
+                    <input class="form-control" type="text" id="lastName" [(ngModel)]="lastName" name="lastName">
                 </div>
                 <div class="matricule-input">
                     <label for="matricule">Matricule</label>
-                    <input class="form-control" type="text" id="matricule" formControlName="matricule">
+                    <input class="form-control" type="text" id="matricule" [(ngModel)]="matricule" name="matricule">
                 </div>
                 <div class="email-input">
                     <label for="email">Adresse e-mail</label>
-                    <input class="form-control" type="email" id="email" formControlName="email">
+                    <input class="form-control" type="email" id="email" [(ngModel)]="email" name="email">
                 </div>
                 <div class="gender-input">
                     <label for="gender">Sexe</label>
-                    <select class="form-select" aria-label="Default select example" id="gender" formControlName="gender">
+                    <select class="form-select" aria-label="Default select example" id="gender" [(ngModel)]="gender" name="gender">
                         <option *ngFor="let gender of genderValues" [value]="gender">{{gender}}</option>
                     </select>
                 </div>
-                <div class="description-input">
-                    <label for="description">Description</label>
-                    <textarea class="form-control" rows="5" id="description" formControlName="description"></textarea>
+                <div class="biography-input">
+                    <label for="biography">biography</label>
+                    <textarea class="form-control" rows="5" id="biography" [(ngModel)]="biography" name="biography"></textarea>
                 </div>
             </div>
             <div class="section-right">
                 <div class="firstName-input">
                     <label for="firstName">Prénom</label>
-                    <input class="form-control" type="text" id="firstName" formControlName="firstName">
+                    <input class="form-control" type="text" id="firstName" [(ngModel)]="firstName" name="firstName">
                 </div>
                 <div class="dateOfBirth-input">
                     <label for="dateOfBirth">Date de naissance</label>
-                    <input class="form-control" type="date" id="dateOfBirth" formControlName="dateOfBirth">
+                    <input class="form-control" type="date" id="dateOfBirth" [ngModel] ="dateOfBirth | date:'yyyy-MM-dd'" (ngModelChange)="dateOfBirth = $event" name="dateOfBirth">
                 </div>
                 <div class="status-input">
                     <label for="status">Statut</label>
-                    <select class="form-select" aria-label="Default select example" id="status" formControlName="status">
+                    <select class="form-select" aria-label="Default select example" id="status" [(ngModel)]="status" name="status">
                         <option *ngFor="let status of statusValues" [value]="status">{{status}}</option>
                     </select>
                 </div>
                 <div class="next-button">
-                    <button class="btn btn-light" type="submit" [disabled]="personalInformationForm.invalid" (click)="onSubmitForm()">Suivant <i class="fa-solid fa-arrow-right"></i></button>
+                    <button class="btn btn-light" type="submit">Suivant <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </div>
-            
-            
-            
-            
-            
-            
-            
-            
         </form>
     </div>
 </div>
