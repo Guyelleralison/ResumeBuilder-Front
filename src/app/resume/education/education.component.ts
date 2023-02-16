@@ -50,4 +50,8 @@ export class EducationComponent implements OnInit, OnCreateForm {
   onClickNextPage(): void {
     this.router.navigate(['/career']);
   }
+
+  onClickPreviousPage(): void {
+    throw new Error('Method not implemented.');
+  }
 }

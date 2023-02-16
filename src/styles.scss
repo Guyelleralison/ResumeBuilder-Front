@@ -48,6 +48,16 @@
         }
     }
 
+    .prev-button {
+        margin-top: 5%;
+        margin-right: 10px;
+        margin-left: 20px;
+
+        button:hover{
+            background-color: rgb(197 245 59 / 100%);
+        }
+    }
+
     .super-right {
         .form-check {
             margin-top: 125px;

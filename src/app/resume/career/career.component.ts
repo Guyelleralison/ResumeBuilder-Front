@@ -21,10 +21,6 @@ export class CareerComponent implements OnInit, OnCreateForm {
     private router: Router
   ) { }
 
-  onClickNextPage(): void {
-    this.router.navigate(['/profile']);
-  }
-
   ngOnInit(): void {
     this.careerList = this.careerService.getCareersByProfile('');
 
@@ -47,6 +43,14 @@ export class CareerComponent implements OnInit, OnCreateForm {
 
   onDeleteCareer(careerId: string): void {
     this.careerList = this.careerList.filter(career => career.id !== careerId);
+  }
+
+  onClickPreviousPage(): void {
+    throw new Error('Method not implemented.');
+  }
+
+  onClickNextPage(): void {
+    this.router.navigate(['/profile']);
   }
 
 }

@@ -17,6 +17,11 @@ export class ProfileComponent implements OnInit, OnCreateForm {
 
   constructor(private skillService: SkillService, private experienceService: ExperienceService) { }
 
+  ngOnInit(): void {
+    this.experiences = this.experienceService.getExperienceList();
+    this.skills = this.skillService.getSkillsByProfile('');
+  }
+
   onSubmitForm(): void {
     throw new Error('Method not implemented.');
   }
@@ -25,9 +30,8 @@ export class ProfileComponent implements OnInit, OnCreateForm {
     throw new Error('Method not implemented.');
   }
 
-  ngOnInit(): void {
-    this.experiences = this.experienceService.getExperienceList();
-    this.skills = this.skillService.getSkillsByProfile('');
+  onClickPreviousPage(): void {
+    throw new Error('Method not implemented.');
   }
 
 }

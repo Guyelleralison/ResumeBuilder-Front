@@ -32,10 +32,6 @@ export class PersonalInformationComponent implements OnInit, OnCreateForm {
     private route: ActivatedRoute,
     private candidateService: CandidateService
   ) { }
-  
-  onClickNextPage(): void {
-    throw new Error('Method not implemented.');
-  }
 
   ngOnInit(): void {
     this.statusValues = [
@@ -52,6 +48,7 @@ export class PersonalInformationComponent implements OnInit, OnCreateForm {
     ];
 
     this.route.queryParams.subscribe(params => {
+      this.candidateId = params['id'];
       this.candidateService.getCandidate(params['id'])
       .subscribe(value => {
         this.lastName = value.lastName;
@@ -71,7 +68,15 @@ export class PersonalInformationComponent implements OnInit, OnCreateForm {
     if (form) {
         console.log(form.value);
       }
-    this.router.navigate(['/experiences']);
+    this.router.navigate(['/experiences'], {queryParams: {id: this.candidateId}});
+  }
+
+  onClickPreviousPage(): void {
+    throw new Error('Method not implemented.');
+  }
+  
+  onClickNextPage(): void {
+    throw new Error('Method not implemented.');
   }
 
 }
