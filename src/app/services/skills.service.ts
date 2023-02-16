@@ -1,4 +1,7 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { map, Observable, tap } from "rxjs";
+import { CandidateSkills } from "../models/candidateSkills.model";
 import { SkillsCategory } from "../models/skills-category.model";
 import { SkillsTechnology } from "../models/skills-technology.model";
 import { Skills } from "../models/skills.model";
@@ -7,6 +10,8 @@ import { Skills } from "../models/skills.model";
     providedIn: 'root'
 })
 export class SkillService {
+
+    constructor(private http: HttpClient){}
 
     getSkillCategoryList(): SkillsCategory[] {
         return [
@@ -82,5 +87,13 @@ export class SkillService {
                 }
             }
         ]
+    }
+
+    getSkillsByCandidate(idCandidate: string): Observable<Skills[]> {
+        return this.http.get<CandidateSkills>(`http://localhost:8000/api/skills/candidate/${ idCandidate }`)
+            .pipe(
+                map(result=>result.skills),
+                tap(result => console.log(result))
+            );
     }
 }

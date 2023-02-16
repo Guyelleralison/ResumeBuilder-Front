@@ -50,15 +50,15 @@
     <div class="experience-list">
             <table class="table table-responsive">
                 <tbody>
-                  <tr *ngFor="let experience of experiencesList">
-                    <th>{{experience.position}}</th>
-                    <td>{{experience.sector}}</td>
-                    <td>{{experience.experienceTitle}}</td>
+                  <tr *ngFor="let candidateExperience of experiencesList$ | async">
+                    <th>{{candidateExperience.position}}</th>
+                    <td>{{candidateExperience.sector}}</td>
+                    <td>{{candidateExperience.experienceTitle}}</td>
                     <td>
-                        {{experience.beginDate | date: 'yyyy'}} - {{experience.endDate | date: 'yyyy'}} 
-                        <p *ngIf="experience.isCurrentPosition">Actuellement</p>
+                        {{candidateExperience.beginDate | date: 'yyyy'}} - {{candidateExperience.endDate | date: 'yyyy'}} 
+                        <p *ngIf="candidateExperience.isCurrentPosition">Actuellement</p>
                     </td>
-                    <td><button class="btn" (click)="onDeleteExperience(experience.id)"><i class="fa-solid fa-trash"></i></button></td>
+                    <td><button class="btn" (click)="onDeleteExperience(candidateExperience.id)"><i class="fa-solid fa-square-minus"></i></button></td>
                   </tr>
                 </tbody>
               </table>
@@ -67,6 +67,6 @@
             <button class="btn btn-light" (click)="onClickNextPage()">Suivant <i class="fa-solid fa-arrow-right"></i></button>
         </div>
         <div class="prev-button">
-            <button class="btn btn-light" (click)="onClickPreviousPage(candidateId)"> <i class="fa-solid fa-arrow-left"></i> Précédent</button>
+            <button class="btn btn-light" (click)="onClickPreviousPage()"> <i class="fa-solid fa-arrow-left"></i> Précédent</button>
         </div>
 </div>

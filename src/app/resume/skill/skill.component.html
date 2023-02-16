@@ -27,7 +27,7 @@
         <div class="skill-list">
             <table class="table table-responsive">
                 <tbody>
-                  <tr *ngFor="let skill of skills">
+                  <tr *ngFor="let skill of skills$ | async">
                     <th>{{skill.category.name}}</th>
                     <td>{{skill.technology.name}}</td>
                     <td>{{skill.technology.version}}</td>
@@ -40,7 +40,7 @@
             <button class="btn btn-light" (click)="onClickNextPage()">Suivant <i class="fa-solid fa-arrow-right"></i></button>
         </div>
         <div class="prev-button">
-            <button class="btn btn-light"> <i class="fa-solid fa-arrow-left"></i> Précédent</button>
+            <button class="btn btn-light" (click)="onClickPreviousPage()"> <i class="fa-solid fa-arrow-left"></i> Précédent</button>
         </div>
     </div>
 </div>

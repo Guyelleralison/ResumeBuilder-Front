@@ -1,10 +1,15 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { map, Observable, tap } from "rxjs";
+import { CandidateExperiences } from "../models/candidateExperiences.model";
 import { Experience } from "../models/experience.model";
 
 @Injectable({
     providedIn: 'root'
 })
 export class ExperienceService {
+
+    constructor(private http: HttpClient) { }
 
     getExperienceList(): Experience[] {
         return [
@@ -29,5 +34,13 @@ export class ExperienceService {
                 'isCurrentPosition': false
             }
         ];
+    }
+
+    getExperiencesByCandidate(idCandidate: string): Observable<Experience[]> {
+        return this.http.get<CandidateExperiences>(`http://localhost:8000/api/experiences/candidate/${ idCandidate }`)
+            .pipe(
+                map(result=>result.experiences),
+                tap(result => console.log(result))
+            );
     }
 }
