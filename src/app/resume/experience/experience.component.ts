@@ -14,12 +14,12 @@ import { ExperienceService } from 'src/app/services/experience.service';
 })
 export class ExperienceComponent implements OnInit, OnCreateForm {
 
-  position!: string;
+  positionTitle!: string;
   sector!: string;
   beginDate!: string;
   endDate!: string;
   isCurrentPosition!: boolean;
-  experienceTitle!: string;
+  title!: string;
   description!: string;
   experiencesList$!: Observable<Experience[]>;
   candidateId!: string;

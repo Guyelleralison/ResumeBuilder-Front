@@ -1,3 +1,4 @@
+import { Experience } from "./experience.model";
 import { Profile } from "./profile.model";
 
 export class Candidate {
@@ -11,6 +12,7 @@ export class Candidate {
     email!: string;
     profiles!: Profile[];
     status!: string;
+    experiences!: Experience[];
     
     public static fromJson(jsonObject: any): Candidate {
         return {
@@ -22,7 +24,8 @@ export class Candidate {
             profiles: jsonObject['profiles'],
             dateOfBirth: jsonObject['dateOfBirth'],
             matricule: jsonObject['matricule'],
-            status: jsonObject['status']
+            status: jsonObject['status'],
+            experiences: jsonObject['experiences']
         } as Candidate;
     }
 }

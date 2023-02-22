@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { OnCreateForm } from 'src/app/interfaces/on-create-form';
 import { Experience } from 'src/app/models/experience.model';
 import { Skills } from 'src/app/models/skills.model';
@@ -12,7 +13,7 @@ import { SkillService } from 'src/app/services/skills.service';
 })
 export class ProfileComponent implements OnInit, OnCreateForm {
 
-  experiences!: Experience[];
+  experiences!: Observable<Experience[]>;
   skills!: Skills[];
 
   constructor(private skillService: SkillService, private experienceService: ExperienceService) { }

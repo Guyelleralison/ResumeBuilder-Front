@@ -1,10 +1,11 @@
 export class Experience{
     id!: string;
-    position!: string;
+    positionTitle!: string;
     sector!: string;
     beginDate!: string;
     endDate!: string;
     isCurrentPosition!: boolean;
-    experienceTitle!: string;
+    title!: string;
     description!: string;
+    candidateId!: string;
 }

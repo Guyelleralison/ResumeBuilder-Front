@@ -7,17 +7,17 @@
     <div class="experience-form">
         <form #experienceForm="ngForm" (ngSubmit)="onSubmitForm(experienceForm)" class="form">
             <div class="section-left">
-                <div class="position-input">
-                    <label for="position">Poste</label>
-                    <input class="form-control" type="text" [(ngModel)]="position" id="position" name="position">
+                <div class="positionTitle-input">
+                    <label for="positionTitle">Poste</label>
+                    <input class="form-control" type="text" [(ngModel)]="positionTitle" id="positionTitle" name="positionTitle">
                 </div>
                 <div class="beginDate-input">
                     <label for="beginDate">Date de début</label>
                     <input class="form-control" type="date" [(ngModel)]="beginDate" id="beginDate" name="beginDate">
                 </div>
-                <div class="experienceTitle-input">
-                    <label for="experienceTitle">Intitulé de l'experience</label>
-                    <textarea class="form-control" rows="5" [(ngModel)]="experienceTitle" id="experienceTitle" name="experienceTitle"></textarea>
+                <div class="title-input">
+                    <label for="title">Intitulé de l'experience</label>
+                    <textarea class="form-control" rows="5" [(ngModel)]="title" id="title" name="title"></textarea>
                 </div>
             </div>
             <div class="section-right">
@@ -51,9 +51,9 @@
             <table class="table table-responsive">
                 <tbody>
                   <tr *ngFor="let candidateExperience of experiencesList$ | async">
-                    <th>{{candidateExperience.position}}</th>
+                    <th>{{candidateExperience.positionTitle}}</th>
                     <td>{{candidateExperience.sector}}</td>
-                    <td>{{candidateExperience.experienceTitle}}</td>
+                    <td>{{candidateExperience.title}}</td>
                     <td>
                         {{candidateExperience.beginDate | date: 'yyyy'}} - {{candidateExperience.endDate | date: 'yyyy'}} 
                         <p *ngIf="candidateExperience.isCurrentPosition">Actuellement</p>

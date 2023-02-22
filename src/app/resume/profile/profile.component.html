@@ -13,8 +13,8 @@
             <div class="card">
                 <h5>Expériences</h5>
                 <table class="table">
-                    <tr *ngFor="let experience of experiences">
-                        <td> {{experience.position }} </td>
+                    <tr *ngFor="let experience of experiences|async">
+                        <td> {{experience.positionTitle }} </td>
                         <td>
                             <div>
                                 <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
