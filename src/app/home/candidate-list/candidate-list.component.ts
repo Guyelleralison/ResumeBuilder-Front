@@ -18,9 +18,6 @@ export class CandidateListComponent implements OnInit {
 
   ngOnInit(): void {
     this.candidates$ = this.candidateService.getCandidateList();
-    this.candidates$.subscribe(candidate=>this.filterData = candidate);
-    console.log(this.filterData);
-    
   }
 
   onEditProfile(profileId: string): void {
@@ -44,6 +41,8 @@ export class CandidateListComponent implements OnInit {
   }
 
   addNewProfile(id: string): void {
+    console.log('id', id);
+    
     this.router.navigate(['/info'], { queryParams: { id: id } });
   } 
 

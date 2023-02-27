@@ -2,7 +2,7 @@ export class Experience{
     id!: string;
     positionTitle!: string;
     sector!: string;
-    beginDate!: string;
+    startDate!: string;
     endDate!: string;
     isCurrentPosition!: boolean;
     title!: string;

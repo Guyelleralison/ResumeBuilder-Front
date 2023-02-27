@@ -3,8 +3,8 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { OnCreateForm } from 'src/app/interfaces/on-create-form';
-import { CandidateExperiences } from 'src/app/models/candidateExperiences.model';
 import { Experience } from 'src/app/models/experience.model';
+import { CandidateService } from 'src/app/services/candidate.service';
 import { ExperienceService } from 'src/app/services/experience.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class ExperienceComponent implements OnInit, OnCreateForm {
 
   positionTitle!: string;
   sector!: string;
-  beginDate!: string;
+  startDate!: string;
   endDate!: string;
   isCurrentPosition!: boolean;
   title!: string;
@@ -26,6 +26,7 @@ export class ExperienceComponent implements OnInit, OnCreateForm {
 
   constructor(
     private experienceService: ExperienceService,
+    private candidateService: CandidateService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
@@ -33,7 +34,7 @@ export class ExperienceComponent implements OnInit, OnCreateForm {
   ngOnInit(): void {
     this.route.queryParams.subscribe(param => {
       this.candidateId = param['id'];
-      this.experiencesList$ = this.experienceService.getExperiencesByCandidate(param['id']);
+      this.experiencesList$ = this.candidateService.getCandidateExperiences(param['id']);
     });
   }
 

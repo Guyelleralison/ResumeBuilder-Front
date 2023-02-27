@@ -28,4 +28,8 @@ export class Candidate {
             experiences: jsonObject['experiences']
         } as Candidate;
     }
+
+    public static extractExperiences(jsonObject: any): Experience[] {
+        return jsonObject['experiences'];
+    }
 }

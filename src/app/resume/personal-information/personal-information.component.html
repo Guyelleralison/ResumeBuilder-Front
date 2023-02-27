@@ -6,7 +6,7 @@
     </div>
     <div class="information-form">
         <form #personalInformationForm="ngForm" class="form" (ngSubmit)="onSubmitForm(personalInformationForm)">
-            <div class="section-left">
+            <div class="section-left" *ngIf="candidate$ | async as candidate">
                 <div class="lastName-input">
                     <label for="lastName">Nom</label>
                     <input class="form-control" type="text" id="lastName" [(ngModel)]="lastName" name="lastName">

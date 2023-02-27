@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable} from 'rxjs';
+import { Observable, tap} from 'rxjs';
 import { OnCreateForm } from 'src/app/interfaces/on-create-form';
 import { Candidate } from 'src/app/models/candidate.model';
 import { CandidateService } from 'src/app/services/candidate.service';
@@ -24,7 +24,7 @@ export class PersonalInformationComponent implements OnInit, OnCreateForm {
   statusValues!: string[];
   genderValues!: string[];
   candidate!: Candidate;
-  candidate$!: Observable<Candidate[]>;
+  candidate$!: Observable<Candidate>;
   candidateId!: string;
 
   constructor(
@@ -49,17 +49,17 @@ export class PersonalInformationComponent implements OnInit, OnCreateForm {
 
     this.route.queryParams.subscribe(params => {
       this.candidateId = params['id'];
-      this.candidateService.getCandidate(params['id'])
-      .subscribe(value => {
-        this.lastName = value.lastName;
-        this.firstName = value.firstName;
-        this.email = value.email;
-        this.gender = value.gender;
-        this.dateOfBirth = new Date(value.dateOfBirth);
-        this.matricule = value.matricule;
-        this.status = value.status
-      }
-    )
+      this.candidate$ = this.candidateService.getCandidate(params['id']).pipe(
+        tap((value) => {
+          this.lastName = value.lastName;
+          this.firstName = value.firstName;
+          this.email = value.email;
+          this.gender = value.gender;
+          this.dateOfBirth = new Date(value.dateOfBirth);
+          this.matricule = value.matricule;
+          this.status = value.status
+        })
+      );
     });
     
   }

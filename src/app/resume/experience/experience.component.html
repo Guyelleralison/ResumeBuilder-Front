@@ -11,9 +11,9 @@
                     <label for="positionTitle">Poste</label>
                     <input class="form-control" type="text" [(ngModel)]="positionTitle" id="positionTitle" name="positionTitle">
                 </div>
-                <div class="beginDate-input">
-                    <label for="beginDate">Date de début</label>
-                    <input class="form-control" type="date" [(ngModel)]="beginDate" id="beginDate" name="beginDate">
+                <div class="startDate-input">
+                    <label for="startDate">Date de début</label>
+                    <input class="form-control" type="date" [(ngModel)]="startDate" id="startDate" name="startDate">
                 </div>
                 <div class="title-input">
                     <label for="title">Intitulé de l'experience</label>
@@ -55,7 +55,7 @@
                     <td>{{candidateExperience.sector}}</td>
                     <td>{{candidateExperience.title}}</td>
                     <td>
-                        {{candidateExperience.beginDate | date: 'yyyy'}} - {{candidateExperience.endDate | date: 'yyyy'}} 
+                        {{candidateExperience.startDate | date: 'yyyy'}} - {{candidateExperience.endDate | date: 'yyyy'}} 
                         <p *ngIf="candidateExperience.isCurrentPosition">Actuellement</p>
                     </td>
                     <td><button class="btn" (click)="onDeleteExperience(candidateExperience.id)"><i class="fa-solid fa-square-minus"></i></button></td>
