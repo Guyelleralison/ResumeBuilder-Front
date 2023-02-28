@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { Validators } from "@angular/forms";
 import { SidebarMenu } from "../sidebar/models/sidebar-menu.model";
 
 @Injectable({
@@ -29,38 +30,52 @@ export class SidebarMenuService{
                 "elementName": 'Informations',
                 "fontawesome": 'fa-circle-info',
                 "clicked": true,
-                "link": 'info'
+                "link": 'resume/info',
+                "nextLink": 'resume/experiences'
             },
             {
                 "elementName": 'Expériences',
                 "fontawesome": 'fa-briefcase',
                 "clicked": false,
-                "link": 'experiences'
+                "link": 'resume/experiences',
+                "nextLink": 'resume/skills',
+                "previousLink": 'resume/info'
             },
             {
                 "elementName": 'Compétences',
                 "fontawesome": 'fa-code',
                 "clicked": false,
-                "link": 'skills'
+                "link": 'resume/skills',
+                "nextLink": 'resume/education',
+                "previousLink": 'resume/experiences'
             },
             {
                 "elementName": 'Formations',
                 "fontawesome": 'fa-graduation-cap',
                 "clicked": false,
-                "link": 'education'
+                "link": 'resume/education',
+                "nextLink": 'resume/career',
+                "previousLink": 'resume/skills'
             },
             {
                 "elementName": 'Parcours',
                 "fontawesome": 'fa-trophy',
                 "clicked": false,
-                "link": 'career'
+                "link": 'resume/career',
+                "nextLink": 'resume/profile',
+                "previousLink": 'resume/education'
             },
             {
                 "elementName": 'Profil',
                 "fontawesome": 'fa-address-card',
                 "clicked": false,
-                "link": 'profile'
+                "link": 'resume/profile',
+                "previousLink": 'resume/career'
             }
         ];
+    }
+
+    getCurrentActiveSideBar(route?: string): SidebarMenu | undefined {
+        return this.getResumeBuilderMenu().filter(sidebar => route?.match(sidebar.link))[0];
     }
 }

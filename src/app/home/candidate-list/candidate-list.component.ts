@@ -43,7 +43,7 @@ export class CandidateListComponent implements OnInit {
   addNewProfile(id: string): void {
     console.log('id', id);
     
-    this.router.navigate(['/info'], { queryParams: { id: id } });
+    this.router.navigate(['/resume/info'], { queryParams: { id: id } });
   } 
 
 }

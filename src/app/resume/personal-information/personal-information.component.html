@@ -5,7 +5,7 @@
         </div>
     </div>
     <div class="information-form">
-        <form #personalInformationForm="ngForm" class="form" (ngSubmit)="onSubmitForm(personalInformationForm)">
+        <form #personalInformationForm="ngForm" class="form" (ngSubmit)="onSubmitForm(personalInformationForm, currentRoute)">
             <div class="section-left" *ngIf="candidate$ | async as candidate">
                 <div class="lastName-input">
                     <label for="lastName">Nom</label>
@@ -48,6 +48,7 @@
                 <div class="next-button">
                     <button class="btn btn-light" type="submit">Suivant <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
+                <p>{{currentRoute}}</p>
             </div>
         </form>
     </div>

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd, Event } from '@angular/router';
 import { OnCreateForm } from 'src/app/interfaces/on-create-form';
 import { Career } from 'src/app/models/career.model';
 import { CareerService } from 'src/app/services/career.service';
+import { SidebarMenuService } from 'src/app/services/sidebar-menu.service';
 
 @Component({
   selector: 'app-career',
@@ -14,14 +15,28 @@ export class CareerComponent implements OnInit, OnCreateForm {
 
   careerList!: Career[];
   careerForm!: FormGroup;
+  candidateId!: string;
+  currentRoute!: string;
 
   constructor(
     private formBuilder: FormBuilder,
     private careerService: CareerService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private route: ActivatedRoute,
+    private sideBarMenuService: SidebarMenuService
+  ) {
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        this.currentRoute = event.url;
+        
+      };
+    });
+  }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(param => {
+      this.candidateId = param['id'];
+    });
     this.careerList = this.careerService.getCareersByProfile('');
 
     this.careerForm = this.formBuilder.group({
@@ -45,12 +60,14 @@ export class CareerComponent implements OnInit, OnCreateForm {
     this.careerList = this.careerList.filter(career => career.id !== careerId);
   }
 
-  onClickPreviousPage(): void {
-    throw new Error('Method not implemented.');
+  onClickPreviousPage(currentRoute?:string): void {
+      const currentSideBarMenuActive = this.sideBarMenuService.getCurrentActiveSideBar(currentRoute);
+      this.router.navigate([`${ currentSideBarMenuActive?.previousLink }`], { queryParams: { id: this.candidateId } });
   }
 
-  onClickNextPage(): void {
-    this.router.navigate(['/profile']);
+  onClickNextPage(currentRoute?:string): void {
+      const currentSideBarMenuActive = this.sideBarMenuService.getCurrentActiveSideBar(currentRoute);
+      this.router.navigate([`${ currentSideBarMenuActive?.nextLink }`], { queryParams: { id: this.candidateId } });
   }
 
 }

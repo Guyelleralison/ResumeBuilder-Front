@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, Event } from '@angular/router';
 import { Observable } from 'rxjs';
 import { OnCreateForm } from 'src/app/interfaces/on-create-form';
 import { Experience } from 'src/app/models/experience.model';
 import { CandidateService } from 'src/app/services/candidate.service';
-import { ExperienceService } from 'src/app/services/experience.service';
+import { SidebarMenuService } from 'src/app/services/sidebar-menu.service';
 
 @Component({
   selector: 'app-experience',
@@ -23,13 +23,21 @@ export class ExperienceComponent implements OnInit, OnCreateForm {
   description!: string;
   experiencesList$!: Observable<Experience[]>;
   candidateId!: string;
+  currentRoute!: string;
 
   constructor(
-    private experienceService: ExperienceService,
     private candidateService: CandidateService,
     private router: Router,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+    private sideBarMenuService: SidebarMenuService
+  ) {
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        this.currentRoute = event.url;
+        
+      };
+    });
+   }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(param => {
@@ -38,12 +46,14 @@ export class ExperienceComponent implements OnInit, OnCreateForm {
     });
   }
 
-  onClickPreviousPage(): void {
-    this.router.navigate(['/info'], { queryParams: { id: this.candidateId }});
+  onClickPreviousPage(currentRoute?:string): void {
+        const currentSideBarMenuActive = this.sideBarMenuService.getCurrentActiveSideBar(currentRoute);
+        this.router.navigate([`${ currentSideBarMenuActive?.previousLink }`], { queryParams: { id: this.candidateId } });
   }
 
-  onClickNextPage(): void {
-    this.router.navigate(['/skills'], {queryParams: {id: this.candidateId}});
+  onClickNextPage(currentRoute?:string): void {
+        const currentSideBarMenuActive = this.sideBarMenuService.getCurrentActiveSideBar(currentRoute);
+        this.router.navigate([`${ currentSideBarMenuActive?.nextLink }`], { queryParams: { id: this.candidateId } });
   }
 
   onSubmitForm(form?: NgForm): void {

@@ -18,22 +18,22 @@ const routes: Routes = [
     path: 'config', component: ConfigComponent
   },
   {
-    path: 'info', component: PersonalInformationComponent
+    path: 'resume/info', component: PersonalInformationComponent
   },
   {
-    path: 'experiences', component: ExperienceComponent
+    path: 'resume/experiences', component: ExperienceComponent
   },
   {
-    path: 'skills', component: SkillComponent
+    path: 'resume/skills', component: SkillComponent
   },
   {
-    path: 'education', component: EducationComponent
+    path: 'resume/education', component: EducationComponent
   },
   {
-    path: 'career', component: CareerComponent
+    path: 'resume/career', component: CareerComponent
   },
   {
-    path: 'profile', component: ProfileComponent
+    path: 'resume/profile', component: ProfileComponent
   },
   {
     path: 'resume', component: ResumeTemplateComponent

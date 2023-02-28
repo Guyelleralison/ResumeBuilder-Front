@@ -3,6 +3,8 @@ export class SidebarMenu {
         public elementName: string,
         public fontawesome: string,
         public clicked: boolean,
-        public link: string
+        public link: string,
+        public nextLink?: string,
+        public previousLink?:string
     ){}
 }

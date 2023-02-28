@@ -1,12 +1,11 @@
 <div class="app">
+  <app-sidebar [sideBarToLoad]="sideBarToLoad"></app-sidebar>
   <section class="fixed" *ngIf="!resumeBuilderScreen; else sidebarResume">
-    <app-sidebar [onHomePage]="true"></app-sidebar>
     <div class="navigate-button">
       <button class="btn btn-light" (click)="navigateToResumeBuilder()">Ajouter candidat <i class="fa-solid fa-user-plus"></i></button>
   </div>
   </section>
   <ng-template #sidebarResume>
-    <app-sidebar [onResumeBuilderPage]="true"></app-sidebar>
     <div class="navigate-button">
       <button class="btn btn-light" (click)="navigateToCandidateList()"> <i class="fa-solid fa-house"></i> Accueil</button>
     </div>
