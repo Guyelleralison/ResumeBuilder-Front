@@ -29,14 +29,17 @@ export class CandidateListComponent implements OnInit {
   }
 
   search(event: any): void {
-    if(event) {
-      this.candidates$ = this.candidates$.pipe(map(candidates => candidates.filter(x => {
+    if (event) {
+      console.log('event', event);
+      
+      this.candidates$ = this.candidates$.pipe(
+        map(candidates => candidates.filter(x => {
         x.firstName.trim().toLowerCase().includes(event.target.value.trim().toLowerCase()) ||
           x.lastName.trim().toLowerCase().includes(event.target.value.trim().toLowerCase()) ||
           x.profiles.find(profile => profile.title.trim().toLowerCase().includes(event.target.value.trim().toLowerCase()))
       })));
 
-      this.candidates$ = this.candidates$.pipe(filter(value => value.length === 0));
+      console.log(this.candidates$);
     }
   }
 
