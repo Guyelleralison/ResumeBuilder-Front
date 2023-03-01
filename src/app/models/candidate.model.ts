@@ -1,3 +1,4 @@
+import { CandidateProfile } from "./candidate-profile.model";
 import { Experience } from "./experience.model";
 import { Profile } from "./profile.model";
 
@@ -31,5 +32,17 @@ export class Candidate {
 
     public static extractExperiences(jsonObject: any): Experience[] {
         return jsonObject['experiences'];
+    }
+
+    public static extractProfiles(jsonObject: any[]): CandidateProfile[] {
+        const candidateProfiles: CandidateProfile[] = [];
+        jsonObject.forEach(element => {
+            candidateProfiles.push({
+                idProfile: element['id'],
+                candidateId: element['candidate_id'],
+                profileTitle: element['profile_title']
+            })
+        });
+        return candidateProfiles;
     }
 }

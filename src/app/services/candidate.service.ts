@@ -1,8 +1,10 @@
 import { Injectable } from "@angular/core";
-import { map, Observable, tap } from "rxjs";
+import { map, Observable } from "rxjs";
 import { Candidate } from "../models/candidate.model";
 import { HttpClient } from '@angular/common/http'
 import { Experience } from "../models/experience.model";
+import { Profile } from "../models/profile.model";
+import { CandidateProfile } from "../models/candidate-profile.model";
 
 @Injectable({
     providedIn: 'root'
@@ -21,5 +23,9 @@ export class CandidateService {
 
     getCandidateExperiences(id: string): Observable<Experience[]> {
         return this.http.get<Candidate>(`http://localhost:8000/api/candidates/${ id }`).pipe(map((jsonObject: any)=>Candidate.extractExperiences(jsonObject)));
+    }
+
+    getCandidateProfiles(id: string): Observable<CandidateProfile[]> {
+        return this.http.get(`http://localhost:8000/api/profiles/candidate/${ id }`).pipe(map((jsonObject: any)=>Candidate.extractProfiles(jsonObject)));
     }
 }
