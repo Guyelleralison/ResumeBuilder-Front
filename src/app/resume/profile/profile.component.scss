@@ -11,6 +11,8 @@
 
     .card {
        width: 300px; 
+       height: 450px;
+       overflow-y: auto;
     }
     .left-part {
         padding: 20px;
@@ -21,8 +23,13 @@
         margin-left: 30%;
     }
 
-    .final-button {
+    .next-button {
         margin-left: 18px;
+        margin-top: 46%;
+    }
+
+    .prev-button {
+        margin-left: -98%;
         margin-top: 46%;
     }
 }
