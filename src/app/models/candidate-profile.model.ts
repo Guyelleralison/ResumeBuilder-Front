@@ -1,6 +1,9 @@
+import { Profile } from "./profile.model";
 
 export class CandidateProfile {
-    idProfile!: string;
-    profileTitle!: string;
     candidateId!: string;
+    candidateFirstName!: string;
+    candidateLastName!: string;
+    profiles!: Profile[];
+    experiences!: string[];
 }

@@ -34,15 +34,22 @@ export class Candidate {
         return jsonObject['experiences'];
     }
 
-    public static extractProfiles(jsonObject: any[]): CandidateProfile[] {
+    public static extractCandidateProfiles(jsonObject: any[]): CandidateProfile[] {
         const candidateProfiles: CandidateProfile[] = [];
-        jsonObject.forEach(element => {
+
+        for (let i = 0; i < jsonObject.length; i++) {
+
             candidateProfiles.push({
-                idProfile: element['id'],
-                candidateId: element['candidate_id'],
-                profileTitle: element['profile_title']
+                candidateId: jsonObject[i]['candidate_id'],
+                candidateFirstName: jsonObject[i]['first_name'],
+                candidateLastName: jsonObject[i]['last_name'],
+                profiles: [{
+                    id: jsonObject[i]['profile_id'],
+                    title: jsonObject[i]['profile_title']
+                }],
+                experiences: [jsonObject[i]['experience_id']]
             })
-        });
-        return candidateProfiles;
+        }
+        return Array.from(new Set(candidateProfiles));
     }
 }

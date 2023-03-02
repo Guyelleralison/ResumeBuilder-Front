@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { filter, map, Observable } from 'rxjs';
+import { filter, map, Observable, tap } from 'rxjs';
+import { CandidateProfile } from 'src/app/models/candidate-profile.model';
 import { Candidate } from 'src/app/models/candidate.model';
 import { CandidateService } from 'src/app/services/candidate.service';
+import { ExperienceService } from 'src/app/services/experience.service';
 
 @Component({
   selector: 'app-candidate-list',
@@ -11,17 +13,24 @@ import { CandidateService } from 'src/app/services/candidate.service';
 })
 export class CandidateListComponent implements OnInit {
 
-  candidates$!: Observable<Candidate[]>;
+  candidateProfile$!: Observable<CandidateProfile[]>;
   filterData!: Candidate[];
+  experienceProfile$!: Observable<any>;
 
-  constructor(private candidateService: CandidateService, private router: Router) { }
+  constructor(
+    private candidateService: CandidateService,
+    private router: Router,
+    private experienceService: ExperienceService
+  ) { }
 
   ngOnInit(): void {
-    this.candidates$ = this.candidateService.getCandidateList();
+    this.candidateProfile$ = this.candidateService.getAllCandidateProfile();
   }
 
   onEditProfile(profileId: string): void {
-
+    console.log('profileId', profileId);
+    
+    this.experienceProfile$ = this.experienceService.getExperienceProfile(profileId);
   }
 
   onShowProfile(profileId: string): void {
@@ -32,14 +41,14 @@ export class CandidateListComponent implements OnInit {
     if (event) {
       console.log('event', event);
       
-      this.candidates$ = this.candidates$.pipe(
-        map(candidates => candidates.filter(x => {
-        x.firstName.trim().toLowerCase().includes(event.target.value.trim().toLowerCase()) ||
-          x.lastName.trim().toLowerCase().includes(event.target.value.trim().toLowerCase()) ||
-          x.profiles.find(profile => profile.title.trim().toLowerCase().includes(event.target.value.trim().toLowerCase()))
-      })));
+      // this.candidates$ = this.candidates$.pipe(
+      //   map(candidates => candidates.filter(x => {
+      //   x.firstName.trim().toLowerCase().includes(event.target.value.trim().toLowerCase()) ||
+      //     x.lastName.trim().toLowerCase().includes(event.target.value.trim().toLowerCase()) ||
+      //     x.profiles.find(profile => profile.title.trim().toLowerCase().includes(event.target.value.trim().toLowerCase()))
+      // })));
 
-      console.log(this.candidates$);
+      //console.log(this.candidates$);
     }
   }
 
@@ -47,6 +56,6 @@ export class CandidateListComponent implements OnInit {
     console.log('id', id);
     
     this.router.navigate(['/resume/info'], { queryParams: { id: id } });
-  } 
+  }
 
 }

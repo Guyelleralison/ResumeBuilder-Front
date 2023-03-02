@@ -3,7 +3,6 @@ import { map, Observable } from "rxjs";
 import { Candidate } from "../models/candidate.model";
 import { HttpClient } from '@angular/common/http'
 import { Experience } from "../models/experience.model";
-import { Profile } from "../models/profile.model";
 import { CandidateProfile } from "../models/candidate-profile.model";
 
 @Injectable({
@@ -14,18 +13,30 @@ export class CandidateService {
     constructor(private http: HttpClient){}
 
     getCandidateList(): Observable<Candidate[]> {
-        return this.http.get<Candidate[]>('http://localhost:8000/api/candidates');
+        return this.http.get<Candidate[]>('http://localhost:8000/api/candidates')
     }
 
     getCandidate(id: string): Observable<Candidate> {
-        return this.http.get<Candidate>(`http://localhost:8000/api/candidates/${ id }`).pipe(map((jsonObject: any)=>Candidate.fromJson(jsonObject)));
+        return this.http.get<Candidate>(`http://localhost:8000/api/candidates/${ id }`).pipe(
+            map((jsonObject: any) => Candidate.fromJson(jsonObject))
+        );
     }
 
     getCandidateExperiences(id: string): Observable<Experience[]> {
-        return this.http.get<Candidate>(`http://localhost:8000/api/candidates/${ id }`).pipe(map((jsonObject: any)=>Candidate.extractExperiences(jsonObject)));
+        return this.http.get<Candidate>(`http://localhost:8000/api/candidates/${ id }`).pipe(
+            map((jsonObject: any) => Candidate.extractExperiences(jsonObject))
+        );
     }
 
     getCandidateProfiles(id: string): Observable<CandidateProfile[]> {
-        return this.http.get(`http://localhost:8000/api/profiles/candidate/${ id }`).pipe(map((jsonObject: any)=>Candidate.extractProfiles(jsonObject)));
+        return this.http.get(`http://localhost:8000/api/profiles/candidate/${ id }`).pipe(
+            map((jsonObject: any) => Candidate.extractCandidateProfiles(jsonObject))
+        );
+    }
+
+    getAllCandidateProfile(): Observable<CandidateProfile[]> {
+        return this.http.get(`http://localhost:8000/api/candidates/profiles/list`).pipe(
+            map((jsonObject: any) => Candidate.extractCandidateProfiles(jsonObject))
+        );
     }
 }

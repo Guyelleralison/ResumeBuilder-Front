@@ -1,3 +1,5 @@
+import { Candidate } from "./candidate.model";
+
 export class Experience{
     id!: string;
     positionTitle!: string;
@@ -8,4 +10,5 @@ export class Experience{
     title!: string;
     description!: string;
     candidateId!: string;
+    candidate?:Candidate;
 }

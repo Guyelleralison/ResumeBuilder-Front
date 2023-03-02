@@ -17,20 +17,26 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let candidate of candidates$ | async">
+              <tr *ngFor="let candidate of candidateProfile$ | async">
                 <td>
-                    <p>{{candidate.lastName}} {{candidate.firstName}} </p>
-                    <button class="btn btn" (click)="addNewProfile(candidate.id)"> <i class="fa-solid fa-file-circle-plus"></i> Ajouter un profil </button>
+                    <p>{{candidate.candidateLastName}} {{candidate.candidateFirstName}} </p>
+                    <button class="btn btn" (click)="addNewProfile(candidate.candidateId)"> <i class="fa-solid fa-file-circle-plus"></i> Ajouter un profil </button>
                 </td>
                 <td>
-                    <p *ngFor="let profil of candidate.profiles">{{profil.title}}</p>
+                  <div *ngFor="let profil of candidate.profiles">
+                    <p>{{profil.title}}</p>
+                  </div>
                 </td>
-                <td>
-                    <div *ngFor="let profile of candidate.profiles">
-                        <button class="btn" (click)="onShowProfile(profile.id)"><i class="fa-solid fa-eye"></i></button>
-                        <button class="btn" (click)="onEditProfile(profile.id)"><i class="fa-solid fa-pen"></i></button>
+                <!-- <td>
+                    <div *ngFor="let profil of candidateProfile$ | async">
+                        <div *ngIf="profil.candidateId === candidate.id">
+                          {{profil.idProfile}}
+                          <button class="btn" (click)="onShowProfile(profil.idProfile)"><i class="fa-solid fa-eye"></i></button>
+                          <button class="btn" (click)="onEditProfile(profil.idProfile)"><i class="fa-solid fa-pen"></i></button>
+                        </div>
                     </div>
                 </td>
+                {{experienceProfile$ | async}} -->
               </tr>
             </tbody>
           </table>
