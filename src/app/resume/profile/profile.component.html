@@ -5,7 +5,12 @@
         </div>
         <div class="title-profile">
             <label for="profile-title">Titre du poste</label>
-            <input type="text" id="profile-title" class="form-control">
+            <div *ngIf="profile$ | async as p else noProfile">
+                <input type="text" id="profile-title" class="form-control" value="{{p.potitionTitle}}">
+            </div>
+            <ng-template #noProfile>
+                <input type="text" id="profile-title" class="form-control">
+            </ng-template>
         </div> 
     </div>
     <div class="body">

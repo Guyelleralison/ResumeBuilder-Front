@@ -3,8 +3,10 @@ import { ActivatedRoute, Router, NavigationEnd, Event } from '@angular/router';
 import { Observable } from 'rxjs';
 import { OnCreateForm } from 'src/app/interfaces/on-create-form';
 import { Experience } from 'src/app/models/experience.model';
+import { Profile } from 'src/app/models/profile.model';
 import { Skills } from 'src/app/models/skills.model';
 import { ExperienceService } from 'src/app/services/experience.service';
+import { ProfileService } from 'src/app/services/profile.service';
 import { SidebarMenuService } from 'src/app/services/sidebar-menu.service';
 import { SkillService } from 'src/app/services/skills.service';
 
@@ -18,11 +20,13 @@ export class ProfileComponent implements OnInit, OnCreateForm {
   experiences!: Observable<Experience[]>;
   skills!: Skills[];
   candidateId!: string;
+  profile$!: Observable<Profile>;
   currentRoute!: string;
 
   constructor(
     private skillService: SkillService,
     private experienceService: ExperienceService,
+    private profileService: ProfileService,
     private sideBarMenuService: SidebarMenuService,
     private router: Router,
     private route: ActivatedRoute
@@ -37,8 +41,9 @@ export class ProfileComponent implements OnInit, OnCreateForm {
   ngOnInit(): void {
     this.route.queryParams.subscribe(param => {
       this.candidateId = param['id'];
+      this.experiences = this.experienceService.getExperienceProfile(param['profileId']);
+      this.profile$ = this.profileService.getProfileDetail(param['profileId']);
     });
-    this.experiences = this.experienceService.getExperienceList();
     this.skills = this.skillService.getSkillsByProfile('');
   }
 

@@ -43,13 +43,30 @@ export class Candidate {
                 candidateId: jsonObject[i]['candidate_id'],
                 candidateFirstName: jsonObject[i]['first_name'],
                 candidateLastName: jsonObject[i]['last_name'],
-                profiles: [{
+                profile: {
                     id: jsonObject[i]['profile_id'],
-                    title: jsonObject[i]['profile_title']
-                }],
-                experiences: [jsonObject[i]['experience_id']]
+                    potitionTitle: jsonObject[i]['profile_title']
+                },
+                experienceId: jsonObject[i]['experience_id']
             })
         }
         return Array.from(new Set(candidateProfiles));
+    }
+
+    public static fillCandidateProfiles(candidatePriles: CandidateProfile[], candidateList: Candidate[]): Candidate[] {
+        const candidates: Candidate[] = [];
+        for (let candidate of candidateList) {
+            candidates.push(candidate);
+            for (let candidateProfile of candidatePriles) {
+                if (candidate.id === candidateProfile.candidateId) {
+                    if (!candidate.profiles) candidate.profiles = [];
+                    candidate.profiles.push(candidateProfile.profile);
+                    const index = candidates.findIndex(c => c.id === candidate.id);
+                    candidates[index] = candidate;
+                }
+            }
+        }
+
+        return candidates;
     }
 }

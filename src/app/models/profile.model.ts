@@ -1,4 +1,11 @@
 export class Profile {
     id!: string;
-    title!: string;
+    potitionTitle!: string;
+
+    public static fromJSON(jsonObject: any): Profile {
+        return {
+            id: jsonObject['id'],
+            potitionTitle: jsonObject['positionTitle']
+        }
+    }
 }

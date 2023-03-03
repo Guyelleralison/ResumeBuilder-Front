@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { map, Observable } from "rxjs";
+import { map, Observable, switchMap } from "rxjs";
 import { Candidate } from "../models/candidate.model";
 import { HttpClient } from '@angular/common/http'
 import { Experience } from "../models/experience.model";
@@ -34,9 +34,12 @@ export class CandidateService {
         );
     }
 
-    getAllCandidateProfile(): Observable<CandidateProfile[]> {
+    getAllCandidateProfile(): Observable<Candidate[]> {
         return this.http.get(`http://localhost:8000/api/candidates/profiles/list`).pipe(
-            map((jsonObject: any) => Candidate.extractCandidateProfiles(jsonObject))
+            map((jsonObject: any) => Candidate.extractCandidateProfiles(jsonObject)),
+            switchMap(candidateProfiles => this.getCandidateList().pipe(
+                map((allCandidate)=>Candidate.fillCandidateProfiles(candidateProfiles, allCandidate))
+            ))
         );
     }
 }

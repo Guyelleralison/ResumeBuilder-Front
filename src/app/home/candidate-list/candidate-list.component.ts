@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { filter, map, Observable, tap } from 'rxjs';
-import { CandidateProfile } from 'src/app/models/candidate-profile.model';
+import { Observable } from 'rxjs';
 import { Candidate } from 'src/app/models/candidate.model';
 import { CandidateService } from 'src/app/services/candidate.service';
 import { ExperienceService } from 'src/app/services/experience.service';
@@ -13,7 +12,7 @@ import { ExperienceService } from 'src/app/services/experience.service';
 })
 export class CandidateListComponent implements OnInit {
 
-  candidateProfile$!: Observable<CandidateProfile[]>;
+  candidateProfile$!: Observable<Candidate[]>;
   filterData!: Candidate[];
   experienceProfile$!: Observable<any>;
 
@@ -27,9 +26,8 @@ export class CandidateListComponent implements OnInit {
     this.candidateProfile$ = this.candidateService.getAllCandidateProfile();
   }
 
-  onEditProfile(profileId: string): void {
-    console.log('profileId', profileId);
-    
+  onEditProfile(profileId: string, candidateId: string): void {
+    this.router.navigate(['/resume/profile'], { queryParams: { id: candidateId, profileId } });
     this.experienceProfile$ = this.experienceService.getExperienceProfile(profileId);
   }
 

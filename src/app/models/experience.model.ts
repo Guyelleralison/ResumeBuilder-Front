@@ -1,4 +1,5 @@
 import { Candidate } from "./candidate.model";
+import { ExperienceProfile } from "./experience-profile.model";
 
 export class Experience{
     id!: string;
@@ -10,5 +11,13 @@ export class Experience{
     title!: string;
     description!: string;
     candidateId!: string;
-    candidate?:Candidate;
+    candidate?: Candidate;
+    
+    public static extractExperience(experienceProfileJSON: ExperienceProfile[]): Experience[] {
+        const experienceList: Experience[] = [];
+        for (let exp of experienceProfileJSON) {
+            experienceList.push( exp.experience)
+        }
+        return experienceList;
+    }
 }

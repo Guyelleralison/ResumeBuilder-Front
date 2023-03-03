@@ -24,11 +24,9 @@ export class ExperienceService {
             );
     }
 
-    getExperienceProfile(idProfile: string): Observable<any> {
-        console.log('service', idProfile);
-        
-        return this.http.get(`http://localhost:8000/api/experience/profiles/${ idProfile }`).pipe(
-            tap((res)=>console.log(res)
+    getExperienceProfile(idProfile: string): Observable<Experience[]> {
+        return this.http.get<ExperienceProfile[]>(`http://localhost:8000/api/experience/profiles/${ idProfile }`).pipe(
+            map((res)=>Experience.extractExperience(res)
             )
         );
     }
