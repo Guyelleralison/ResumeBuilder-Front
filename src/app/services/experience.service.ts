@@ -24,10 +24,23 @@ export class ExperienceService {
             );
     }
 
-    getExperienceProfile(idProfile: string): Observable<Experience[]> {
+    getExperienceDetail(idExperience: string): Observable<Experience> {
+        return this.http.get<Experience>(`http://localhost:8000/api/experiences/${ idExperience }`);
+    }
+
+    getExperienceProfile(idProfile: string, idCandidate?:string): Observable<Experience[]> {
         return this.http.get<ExperienceProfile[]>(`http://localhost:8000/api/experience/profiles/${ idProfile }`).pipe(
             map((res)=>Experience.extractExperience(res)
             )
         );
+    }
+
+    saveOrUpdate(experience: Experience, idExperience?: string): Observable<Experience> {
+        console.log('experience added', experience);
+        
+        if (idExperience) {
+            return this.http.put<Experience>(`http://localhost:8000/api/experiences/${ idExperience }`, experience);
+        }
+        return this.http.post<Experience>(`http://localhost:8000/api/experiences`, JSON.stringify(experience));
     }
 }

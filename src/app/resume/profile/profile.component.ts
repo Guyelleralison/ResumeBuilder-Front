@@ -17,7 +17,7 @@ import { SkillService } from 'src/app/services/skills.service';
 })
 export class ProfileComponent implements OnInit, OnCreateForm {
 
-  experiences!: Observable<Experience[]>;
+  experiences$!: Observable<Experience[]>;
   skills!: Skills[];
   candidateId!: string;
   profile$!: Observable<Profile>;
@@ -41,7 +41,7 @@ export class ProfileComponent implements OnInit, OnCreateForm {
   ngOnInit(): void {
     this.route.queryParams.subscribe(param => {
       this.candidateId = param['id'];
-      this.experiences = this.experienceService.getExperienceProfile(param['profileId']);
+      this.experiences$ = this.experienceService.getExperienceProfile(param['profileId'], param['id']);
       this.profile$ = this.profileService.getProfileDetail(param['profileId']);
     });
     this.skills = this.skillService.getSkillsByProfile('');

@@ -13,11 +13,11 @@
                 </div>
                 <div class="startDate-input">
                     <label for="startDate">Date de début</label>
-                    <input class="form-control" type="date" [(ngModel)]="startDate" id="startDate" name="startDate">
+                    <input class="form-control" type="date" [ngModel]="startDate | date:'yyyy-MM-dd'" (ngModelChange)="startDate = $event" id="startDate" name="startDate">
                 </div>
-                <div class="title-input">
-                    <label for="title">Intitulé de l'experience</label>
-                    <textarea class="form-control" rows="5" [(ngModel)]="title" id="title" name="title"></textarea>
+                <div class="description-input">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" rows="5" [(ngModel)]="description" id="description" name="description"></textarea>
                 </div>
             </div>
             <div class="section-right">
@@ -27,14 +27,17 @@
                 </div>
                 <div class="endDate-input">
                     <label for="endDate">Date de fin</label>
-                    <input class="form-control" type="date" [(ngModel)]="endDate" id="endDate" name="endDate">
+                    <input class="form-control" type="date" [ngModel]="endDate | date:'yyyy-MM-dd'" (ngModelChange)="endDate = $event" id="endDate" name="endDate">
                 </div>
-                <div class="description-input">
-                    <label for="description">Description</label>
-                    <textarea class="form-control" [(ngModel)]="description" id="description" name="description"></textarea>
+                <div class="title-input">
+                    <label for="title">Intitulé de l'experience</label>
+                    <textarea class="form-control" [(ngModel)]="title" id="title" name="title"></textarea>
+                </div>
+                <div>
+                    <input type="text" [(ngModel)]="idExperience" id="idExperience" name="idExperience" hidden>
                 </div>
                 <div class="btn-submit">
-                    <button class="btn btn-light" type="submit">Ajouter <i class="fa-solid fa-plus"></i></button>
+                    <button class="btn btn-light" type="submit">Enregistrer <i class="fa-solid fa-floppy-disk"></i></button>
                 </div>
             </div>
             <div class="super-right">
@@ -51,7 +54,7 @@
             <table class="table table-responsive">
                 <tbody>
                   <tr *ngFor="let candidateExperience of experiencesList$ | async">
-                    <th>{{candidateExperience.positionTitle}}</th>
+                    <th> <button class="btn btn" (click)="expandExperience(candidateExperience.id)">{{candidateExperience.positionTitle}}</button></th>
                     <td>{{candidateExperience.sector}}</td>
                     <td>{{candidateExperience.title}}</td>
                     <td>

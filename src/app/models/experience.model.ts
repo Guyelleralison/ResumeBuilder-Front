@@ -10,7 +10,7 @@ export class Experience{
     isCurrentPosition!: boolean;
     title!: string;
     description!: string;
-    candidateId!: string;
+    idCandidate!: string;
     candidate?: Candidate;
     
     public static extractExperience(experienceProfileJSON: ExperienceProfile[]): Experience[] {

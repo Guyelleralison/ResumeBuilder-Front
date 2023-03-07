@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router, Event } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, switchMap, tap } from 'rxjs';
 import { OnCreateForm } from 'src/app/interfaces/on-create-form';
 import { Experience } from 'src/app/models/experience.model';
 import { CandidateService } from 'src/app/services/candidate.service';
+import { ExperienceService } from 'src/app/services/experience.service';
 import { SidebarMenuService } from 'src/app/services/sidebar-menu.service';
 
 @Component({
@@ -14,6 +15,7 @@ import { SidebarMenuService } from 'src/app/services/sidebar-menu.service';
 })
 export class ExperienceComponent implements OnInit, OnCreateForm {
 
+  idExperience!: string;
   positionTitle!: string;
   sector!: string;
   startDate!: string;
@@ -24,12 +26,14 @@ export class ExperienceComponent implements OnInit, OnCreateForm {
   experiencesList$!: Observable<Experience[]>;
   candidateId!: string;
   currentRoute!: string;
+  experienceAdded$!: Observable<Experience>;
 
   constructor(
     private candidateService: CandidateService,
     private router: Router,
     private route: ActivatedRoute,
-    private sideBarMenuService: SidebarMenuService
+    private sideBarMenuService: SidebarMenuService,
+    private experienceService: ExperienceService
   ) {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
@@ -58,13 +62,34 @@ export class ExperienceComponent implements OnInit, OnCreateForm {
 
   onSubmitForm(form?: NgForm): void {
     if (form) {
-    console.log(form.value);
+      if (!form.value['isCurrentPosition']) form.value['isCurrentPosition'] = false;
+      this.experiencesList$ = this.experienceService.saveOrUpdate({
+        ...form.value,
+        idCandidate: this.candidateId
+      }, form.value['idExperience']).pipe(
+        switchMap(()=>this.candidateService.getCandidateExperiences(this.candidateId))
+      );
     //this.experiencesList.push(form.value as Experience);
     }
   }
 
   onDeleteExperience(idExperience: string): void {
     
+  }
+
+  expandExperience(idExperience: string): void {
+    this.experienceService.getExperienceDetail(idExperience).pipe(
+      tap((experience) => {
+        this.positionTitle = experience.positionTitle;
+        this.sector = experience.sector;
+        this.startDate = experience.startDate;
+        this.title = experience.title;
+        this.description = experience.description;
+        this.endDate = experience.endDate;
+        this.isCurrentPosition = experience.isCurrentPosition;
+        this.idExperience = experience.id;
+      })
+    ).subscribe();
   }
 
 }
