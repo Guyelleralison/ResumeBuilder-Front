@@ -28,7 +28,6 @@ export class CandidateListComponent implements OnInit {
 
   onEditProfile(profileId: string, candidateId: string): void {
     this.router.navigate(['/resume/profile'], { queryParams: { id: candidateId, profileId } });
-    this.experienceProfile$ = this.experienceService.getExperienceProfile(profileId);
   }
 
   onShowProfile(profileId: string): void {

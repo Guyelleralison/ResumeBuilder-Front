@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="home-body">
-        <table class="table table-striped">
+        <table class="table">
             <thead>
               <tr>
                 <th scope="col">Nom complet</th>
@@ -23,9 +23,11 @@
                     <button class="btn btn" (click)="addNewProfile(candidate.id)"> <i class="fa-solid fa-file-circle-plus"></i> Ajouter un profil </button>
                 </td>
                 <td>
-                  <div *ngFor="let profil of candidate.profiles">
-                    <p>{{profil.potitionTitle}}</p>
-                    <div>
+                  <div *ngFor="let profil of candidate.profiles" class="row">
+                    <div class="col">
+                      <p>{{profil.potitionTitle}}</p>
+                    </div>
+                    <div class="col">
                       <button class="btn" (click)="onShowProfile(profil.id)"><i class="fa-solid fa-eye"></i></button>
                       <button class="btn" (click)="onEditProfile(profil.id, candidate.id)"><i class="fa-solid fa-pen"></i></button>
                     </div>

@@ -12,12 +12,29 @@ export class Experience{
     description!: string;
     idCandidate!: string;
     candidate?: Candidate;
+    profileId?: string;
     
     public static extractExperience(experienceProfileJSON: ExperienceProfile[]): Experience[] {
         const experienceList: Experience[] = [];
         for (let exp of experienceProfileJSON) {
-            experienceList.push( exp.experience)
+            experienceList.push({
+                ...exp.experience,
+                profileId: exp.profile.id
+            })
         }
+
+        
         return experienceList;
+    }
+
+    public static joinExperiences(experiencesByProfile: Experience[], allExperience: Experience[]): Experience[] {
+        for (let exp of allExperience) {
+            for (let expProfile of experiencesByProfile) {
+                if (exp.id === expProfile.id) {
+                    exp.profileId = expProfile.profileId;
+                }
+            }
+        }
+        return allExperience;
     }
 }

@@ -41,9 +41,14 @@ export class ProfileComponent implements OnInit, OnCreateForm {
   ngOnInit(): void {
     this.route.queryParams.subscribe(param => {
       this.candidateId = param['id'];
-      this.experiences$ = this.experienceService.getExperienceProfile(param['profileId'], param['id']);
+      if (param['profileId']) {
+        this.experiences$ = this.experienceService.getExperienceProfile(param['profileId'], param['id']);
+      } else {
+        this.experiences$ = this.experienceService.getExperiencesByCandidate(param['id']);
+      }
       this.profile$ = this.profileService.getProfileDetail(param['profileId']);
     });
+    
     this.skills = this.skillService.getSkillsByProfile('');
   }
 
@@ -58,6 +63,10 @@ export class ProfileComponent implements OnInit, OnCreateForm {
   onClickPreviousPage(currentRoute?:string): void {
         const currentSideBarMenuActive = this.sideBarMenuService.getCurrentActiveSideBar(currentRoute);
         this.router.navigate([`${ currentSideBarMenuActive?.previousLink }`], { queryParams: { id: this.candidateId } });
+  }
+
+  addOrRemoveExperience(event: any, experience: Experience, profileId: string): void {
+    console.log(`experience: ${experience.title} | checked: ${event.currentTarget.checked} | profileId: ${profileId}`);
   }
 
 }

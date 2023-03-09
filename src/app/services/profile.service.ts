@@ -12,8 +12,7 @@ export class ProfileService {
 
     getProfileDetail(idProfile: string): Observable<Profile> {
         return this.http.get<Profile>(`http://localhost:8000/api/profiles/${ idProfile }`).pipe(
-            map((p)=>Profile.fromJSON(p)),
-            tap((p)=>console.log('profile', p))
+            map((p)=>Profile.fromJSON(p))
         );
     }
 

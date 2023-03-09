@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { map, Observable, tap } from "rxjs";
+import { map, Observable, switchMap, tap } from "rxjs";
 import { Candidate } from "../models/candidate.model";
 import { ExperienceProfile } from "../models/experience-profile.model";
 import { Experience } from "../models/experience.model";
@@ -19,8 +19,7 @@ export class ExperienceService {
     getExperiencesByCandidate(idCandidate: string): Observable<Experience[]> {
         return this.http.get<Candidate>(`http://localhost:8000/api/candidates/${ idCandidate }`)
             .pipe(
-                map(result=>result.experiences),
-                tap(result => console.log(result))
+                map(result=>result.experiences)
             );
     }
 
@@ -28,10 +27,12 @@ export class ExperienceService {
         return this.http.get<Experience>(`http://localhost:8000/api/experiences/${ idExperience }`);
     }
 
-    getExperienceProfile(idProfile: string, idCandidate?:string): Observable<Experience[]> {
+    getExperienceProfile(idProfile: string, idCandidate:string): Observable<Experience[]> {
         return this.http.get<ExperienceProfile[]>(`http://localhost:8000/api/experience/profiles/${ idProfile }`).pipe(
-            map((res)=>Experience.extractExperience(res)
-            )
+                map((res) => Experience.extractExperience(res)),
+                switchMap((experiencesProfiles: Experience[]) => this.getExperiencesByCandidate(idCandidate).pipe(
+                    map(allExperience=>Experience.joinExperiences(experiencesProfiles, allExperience))
+            ))
         );
     }
 
