@@ -5,6 +5,7 @@ import { OnCreateForm } from 'src/app/interfaces/on-create-form';
 import { Experience } from 'src/app/models/experience.model';
 import { Profile } from 'src/app/models/profile.model';
 import { Skills } from 'src/app/models/skills.model';
+import { ExperienceProfileService } from 'src/app/services/experience-profile.service';
 import { ExperienceService } from 'src/app/services/experience.service';
 import { ProfileService } from 'src/app/services/profile.service';
 import { SidebarMenuService } from 'src/app/services/sidebar-menu.service';
@@ -27,6 +28,7 @@ export class ProfileComponent implements OnInit, OnCreateForm {
     private skillService: SkillService,
     private experienceService: ExperienceService,
     private profileService: ProfileService,
+    private experienceProfileService: ExperienceProfileService,
     private sideBarMenuService: SidebarMenuService,
     private router: Router,
     private route: ActivatedRoute
@@ -65,8 +67,13 @@ export class ProfileComponent implements OnInit, OnCreateForm {
         this.router.navigate([`${ currentSideBarMenuActive?.previousLink }`], { queryParams: { id: this.candidateId } });
   }
 
-  addOrRemoveExperience(event: any, experience: Experience, profileId: string): void {
-    console.log(`experience: ${experience.title} | checked: ${event.currentTarget.checked} | profileId: ${profileId}`);
+  addOrRemoveExperience(event: any, experienceId: string, profileId: string): void {
+    if (event.currentTarget.checked === true) {
+      this.experienceProfileService.addExperienceProfile(profileId, experienceId).subscribe();
+    }
+    if (event.currentTarget.checked === false) {
+      this.experienceProfileService.deleteExperienceProfile(profileId); //to change into the real experienceProfileID
+    }
   }
 
 }

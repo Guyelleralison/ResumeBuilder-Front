@@ -20,9 +20,9 @@
                         <td>
                             <div>
                                 <input *ngIf="experience.profileId else inputNotChecked" class="form-check-input" 
-                                type="checkbox" id="checkboxNoLabel" value="" ngModel (change)="addOrRemoveExperience($event, experience, p.id)" checked>
+                                type="checkbox" id="checkboxNoLabel" value="" [ngModel]="" (change)="addOrRemoveExperience($event, experience.id, p.id)" checked>
                                 <ng-template #inputNotChecked>
-                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" ngModel (change)="addOrRemoveExperience($event, experience, p.id)">
+                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" ngModel (change)="addOrRemoveExperience($event, experience.id, p.id)">
                                 </ng-template>
                             </div>
                         </td>
@@ -78,9 +78,9 @@
                             <td>
                                 <div>
                                     <input *ngIf="experience.profileId else inputNotChecked" class="form-check-input" 
-                                    type="checkbox" id="checkboxNoLabel" value="" ngModel (change)="addOrRemoveExperience($event, experience, '')" checked>
+                                    type="checkbox" id="checkboxNoLabel" value="" [ngModel]="" (change)="addOrRemoveExperience($event, experience.id, '')" checked>
                                     <ng-template #inputNotChecked>
-                                        <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" ngModel (change)="addOrRemoveExperience($event, experience, '')">
+                                        <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" ngModel (change)="addOrRemoveExperience($event, experience.id, '')">
                                     </ng-template>
                                 </div>
                             </td>
