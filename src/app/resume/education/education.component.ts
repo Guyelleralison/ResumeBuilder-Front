@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router, NavigationEnd, Event, ActivatedRoute } from '@angular/router';
 import { OnCreateForm } from 'src/app/interfaces/on-create-form';
-import { Formation } from 'src/app/models/formation.model';
-import { FormationService } from 'src/app/services/formation.service';
-import { SidebarMenuService } from 'src/app/services/sidebar-menu.service';
+import { Formation } from 'src/app/core/models/formation.model';
+import { FormationService } from 'src/app/core/services/formation.service';
+import { SidebarMenuService } from 'src/app/core/services/sidebar-menu.service';
 
 @Component({
   selector: 'app-education',
@@ -28,7 +28,7 @@ export class EducationComponent implements OnInit, OnCreateForm {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         this.currentRoute = event.url;
-        
+
       };
     });
   }

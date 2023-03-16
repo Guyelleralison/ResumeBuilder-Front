@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SkillsCategory } from 'src/app/models/skills-category.model';
-import { SkillsTechnology } from 'src/app/models/skills-technology.model';
-import { SkillService } from 'src/app/services/skills.service';
+import { SkillsCategory } from 'src/app/core/models/skills-category.model';
+import { SkillsTechnology } from 'src/app/core/models/skills-technology.model';
+import { SkillService } from 'src/app/core/services/skills.service';
 
 @Component({
   selector: 'app-config',
@@ -32,6 +32,6 @@ export class ConfigComponent implements OnInit {
   }
 
   addNewSkillTechnology(technologyId: string): void {
-    
+
   }
 }

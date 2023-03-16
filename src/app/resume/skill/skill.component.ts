@@ -3,10 +3,10 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router, NavigationEnd, Event } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { OnCreateForm } from 'src/app/interfaces/on-create-form';
-import { SkillsCategory } from 'src/app/models/skills-category.model';
-import { Skills } from 'src/app/models/skills.model';
-import { SidebarMenuService } from 'src/app/services/sidebar-menu.service';
-import { SkillService } from 'src/app/services/skills.service';
+import { SkillsCategory } from 'src/app/core/models/skills-category.model';
+import { Skills } from 'src/app/core/models/skills.model';
+import { SidebarMenuService } from 'src/app/core/services/sidebar-menu.service';
+import { SkillService } from 'src/app/core/services/skills.service';
 
 @Component({
   selector: 'app-skill',
@@ -30,7 +30,7 @@ export class SkillComponent implements OnInit, OnCreateForm {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         this.currentRoute = event.url;
-        
+
       };
     });
   }
@@ -62,7 +62,7 @@ export class SkillComponent implements OnInit, OnCreateForm {
     //     version: this.skillForm.value.version
     //   }
     // };
-    
+
     // this.skills.push(newSkill);
   }
 

@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd, Event } from '@angular/router';
 import { Observable } from 'rxjs';
 import { OnCreateForm } from 'src/app/interfaces/on-create-form';
-import { Experience } from 'src/app/models/experience.model';
-import { Profile } from 'src/app/models/profile.model';
-import { Skills } from 'src/app/models/skills.model';
-import { ExperienceProfileService } from 'src/app/services/experience-profile.service';
-import { ExperienceService } from 'src/app/services/experience.service';
-import { ProfileService } from 'src/app/services/profile.service';
-import { SidebarMenuService } from 'src/app/services/sidebar-menu.service';
-import { SkillService } from 'src/app/services/skills.service';
+import { Experience } from 'src/app/core/models/experience.model';
+import { Profile } from 'src/app/core/models/profile.model';
+import { Skills } from 'src/app/core/models/skills.model';
+import { ExperienceProfileService } from 'src/app/core/services/experience-profile.service';
+import { ExperienceService } from 'src/app/core/services/experience.service';
+import { ProfileService } from 'src/app/core/services/profile.service';
+import { SidebarMenuService } from 'src/app/core/services/sidebar-menu.service';
+import { SkillService } from 'src/app/core/services/skills.service';
 
 @Component({
   selector: 'app-profile',
@@ -50,14 +50,14 @@ export class ProfileComponent implements OnInit, OnCreateForm {
       }
       this.profile$ = this.profileService.getProfileDetail(param['profileId']);
     });
-    
+
     this.skills = this.skillService.getSkillsByProfile('');
   }
 
   onSubmitForm(): void {
     throw new Error('Method not implemented.');
   }
-  
+
   onClickNextPage(): void {
     throw new Error('Method not implemented.');
   }

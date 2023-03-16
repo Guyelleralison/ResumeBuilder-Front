@@ -13,13 +13,13 @@ export class SidebarMenuService{
                 "elementName": 'Liste des candidats',
                 "fontawesome": 'fa-user',
                 "clicked": true,
-                "link": ''
+                "link": 'home'
             },
             {
                 "elementName": 'Paramètres',
                 "fontawesome": 'fa-gear',
                 "clicked": false,
-                "link": 'config'
+                "link": 'home/config'
             }
         ];
     }

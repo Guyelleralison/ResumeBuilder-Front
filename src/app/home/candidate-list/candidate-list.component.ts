@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Candidate } from 'src/app/models/candidate.model';
-import { CandidateService } from 'src/app/services/candidate.service';
-import { ExperienceService } from 'src/app/services/experience.service';
+import { Candidate } from 'src/app/core/models/candidate.model';
+import { CandidateService } from 'src/app/core/services/candidate.service';
+import { ExperienceService } from 'src/app/core/services/experience.service';
 
 @Component({
   selector: 'app-candidate-list',
@@ -37,7 +37,7 @@ export class CandidateListComponent implements OnInit {
   search(event: any): void {
     if (event) {
       console.log('event', event);
-      
+
       // this.candidates$ = this.candidates$.pipe(
       //   map(candidates => candidates.filter(x => {
       //   x.firstName.trim().toLowerCase().includes(event.target.value.trim().toLowerCase()) ||
@@ -51,7 +51,7 @@ export class CandidateListComponent implements OnInit {
 
   addNewProfile(id: string): void {
     console.log('id', id);
-    
+
     this.router.navigate(['/resume/info'], { queryParams: { id: id } });
   }
 

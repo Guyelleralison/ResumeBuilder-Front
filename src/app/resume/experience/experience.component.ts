@@ -3,10 +3,10 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router, Event } from '@angular/router';
 import { Observable, switchMap, tap } from 'rxjs';
 import { OnCreateForm } from 'src/app/interfaces/on-create-form';
-import { Experience } from 'src/app/models/experience.model';
-import { CandidateService } from 'src/app/services/candidate.service';
-import { ExperienceService } from 'src/app/services/experience.service';
-import { SidebarMenuService } from 'src/app/services/sidebar-menu.service';
+import { Experience } from 'src/app/core/models/experience.model';
+import { CandidateService } from 'src/app/core/services/candidate.service';
+import { ExperienceService } from 'src/app/core/services/experience.service';
+import { SidebarMenuService } from 'src/app/core/services/sidebar-menu.service';
 
 @Component({
   selector: 'app-experience',
@@ -38,7 +38,7 @@ export class ExperienceComponent implements OnInit, OnCreateForm {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         this.currentRoute = event.url;
-        
+
       };
     });
    }
@@ -74,7 +74,7 @@ export class ExperienceComponent implements OnInit, OnCreateForm {
   }
 
   onDeleteExperience(idExperience: string): void {
-    
+
   }
 
   expandExperience(idExperience: string): void {

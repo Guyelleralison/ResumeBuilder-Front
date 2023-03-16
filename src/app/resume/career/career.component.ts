@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router, NavigationEnd, Event } from '@angular/router';
 import { OnCreateForm } from 'src/app/interfaces/on-create-form';
-import { Career } from 'src/app/models/career.model';
-import { CareerService } from 'src/app/services/career.service';
-import { SidebarMenuService } from 'src/app/services/sidebar-menu.service';
+import { Career } from 'src/app/core/models/career.model';
+import { CareerService } from 'src/app/core/services/career.service';
+import { SidebarMenuService } from 'src/app/core/services/sidebar-menu.service';
 
 @Component({
   selector: 'app-career',
@@ -28,7 +28,7 @@ export class CareerComponent implements OnInit, OnCreateForm {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         this.currentRoute = event.url;
-        
+
       };
     });
   }
@@ -52,7 +52,7 @@ export class CareerComponent implements OnInit, OnCreateForm {
     const newCareer: Career = {
       ...this.careerForm.value,
       id: this.careerList.length+1
-    } 
+    }
     this.careerList.push(newCareer);
   }
 
