@@ -13,40 +13,36 @@ export class SkillService {
 
     constructor(private http: HttpClient){}
 
-    getSkillCategoryList(): SkillsCategory[] {
-        return [
-            {
-                'id': '1',
-                'name': 'Programmation'
-            },
-            {
-                'id': '2',
-                'name': 'Framework & library'
-            },
-            {
-                'id': '3',
-                'name': 'Database'
-            }
-        ]
+    getSkillCategoryList(): Observable<SkillsCategory[]> {
+        return this.http.get<SkillsCategory[]>('http://localhost:8000/api/skill/category');
     }
 
-    getSkillTechnologyList(): SkillsTechnology[] {
-        return [
-            {
-                'id': '1',
-                'name': 'Java',
-                'version': '8'
-            },
-            {
-                'id': '2',
-                'name': 'Angular',
-                'version': '13'
-            },
-            {
-                'id': '3',
-                'name': 'ReactJS'
-            }
-        ]
+    addNewSkillCategory(skillsCategory: SkillsCategory): Observable<SkillsCategory> {
+      return this.http.post<SkillsCategory>('http://localhost:8000/api/skill/category', skillsCategory);
+    }
+
+    deleteSkillCategory(id: string): Observable<void>{
+        return this.http.delete<void>(`http://localhost:8000/api/skill/category/${id}`);
+    }
+
+    updateNewSkillCategory(skillsCategory: SkillsCategory): Observable<SkillsCategory> {
+      return this.http.put<SkillsCategory>(`http://localhost:8000/api/skill/category/${skillsCategory.id}`, skillsCategory);
+    }
+
+    getSkillTechnologyList(): Observable<SkillsTechnology[]> {
+        return this.http.get<SkillsTechnology[]>('http://localhost:8000/api/skill/technology');
+    }
+
+    addNewSkillTechnology(skillsTechnology: SkillsTechnology): Observable<SkillsTechnology> {
+      return this.http.post<SkillsTechnology>('http://localhost:8000/api/skill/technology', skillsTechnology);
+    }
+
+    deleteSkillTechnology(id: string): Observable<void>{
+        return this.http.delete<void>(`http://localhost:8000/api/skill/technology/${id}`);
+    }
+
+    updateNewSkillTechnology(skillsTechnology: SkillsTechnology): Observable<SkillsTechnology> {
+      return this.http.put<SkillsTechnology>(`http://localhost:8000/api/skill/technology/${skillsTechnology.id}`, skillsTechnology);
     }
 
     getSkillsByProfile(profileId: string): Skills[] {

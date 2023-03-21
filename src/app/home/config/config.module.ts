@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ConfigComponent} from "./config.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 
 @NgModule({
   declarations: [ConfigComponent],
-  imports: [
-    CommonModule
-  ]
+    imports: [
+        CommonModule,
+      FormsModule,
+        ReactiveFormsModule
+    ]
 })
 export class ConfigModule { }

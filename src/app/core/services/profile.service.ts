@@ -1,7 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { map, Observable, tap } from "rxjs";
-import { ExperienceProfile } from "../models/experience-profile.model";
+import { map, Observable} from "rxjs";
 import { Profile } from "../models/profile.model";
 
 @Injectable({
