@@ -28,7 +28,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let category of skillsCategory$ | async">
+                  <tr *ngFor="let category of skillsCategory$ | async | sortBy:'asc':'name'">
                     <td>
                         <input type="text" id="cname{{category.id}}" value="{{category.name}}" class="form-control"/>
                     </td>
@@ -63,7 +63,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let technology of skillsTechnology$ | async">
+                  <tr *ngFor="let technology of skillsTechnology$ | async | sortBy:'asc':'name'">
                     <td id="{{technology.id}}">
                         <input type="text" id="tname{{technology.id}}" value="{{technology.name}} {{technology.version}}" class="form-control"/>
                     </td>

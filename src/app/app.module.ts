@@ -9,10 +9,11 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import {CoreModule} from "./core/core.module";
 import {HomeModule} from "./home/home.module";
 import {ResumeModule} from "./resume/resume.module";
+import { SortByPipe } from './shared/pipes/sort.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +26,7 @@ import {ResumeModule} from "./resume/resume.module";
     HomeModule,
     ResumeModule,
   ],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
