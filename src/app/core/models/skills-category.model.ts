@@ -1,4 +1,4 @@
 export class SkillsCategory{
-    id!: string;
+    id?: string;
     name!: string;
 }

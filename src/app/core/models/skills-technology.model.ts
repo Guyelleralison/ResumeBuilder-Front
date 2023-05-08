@@ -1,5 +1,5 @@
 export class SkillsTechnology {
-    id!: string;
+    id?: string;
     name!: string;
     version?: string;
 }
